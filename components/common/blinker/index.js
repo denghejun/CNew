@@ -11,13 +11,17 @@ export default class Blinker extends Component {
             scaleable: this.props.scaleable === undefined ? false : this.props.scaleable,
             scaleFrom: this.props.scaleFrom === undefined ? 0 : this.props.scaleFrom,
             scaleTo: this.props.scaleTo === undefined ? 1 : this.props.scaleTo,
-            scale: new Animated.Value(1)
+            scale: new Animated.Value(1),
+            rotationable: this.props.rotationable === undefined ? false : this.props.rotationable,
+            rotation: new Animated.Value(0),
+            rotationOffet: this.props.rotationOffet === undefined ? 3 : this.props.rotationOffet
         };
     }
 
     componentDidMount() {
         this.startBlinkAnimation();
         this.startScaleAnimation();
+        this.startRotationAnimation();
         this.setBlinkTimeout();
     }
 
@@ -27,20 +31,30 @@ export default class Blinker extends Component {
 
     startBlinkAnimation() {
         if (this.state.blinkable === true) {
-            this.timeId = setInterval(() => this.tick(), this.state.blinkInterval || 500);
+            this.timeId = setInterval(() => this.tick(), this.state.blinkInterval);
         }
     }
 
     startScaleAnimation() {
         if (this.state.scaleable === true) {
             this.state.scale.setValue(this.state.scaleFrom);
-            Animated.spring(
-                this.state.scale,
-                {
+            Animated.parallel([
+                Animated.spring(this.state.scale, {
                     toValue: this.state.scaleTo,
                     friction: 1,
-                }
-            ).start();
+                }),
+            ]).start();
+        }
+    }
+
+    startRotationAnimation() {
+        if (this.state.rotationable === true) {
+            Animated.parallel([
+                Animated.spring(this.state.rotation, {
+                    toValue: this.state.rotationOffet,
+                    friction: 20,
+                }),
+            ]).start();
         }
     }
 
@@ -77,7 +91,16 @@ export default class Blinker extends Component {
                 <Animated.Text style={[
                     this.state.blinkFlag ? s.show : s.hidden,
                     this.props.style,
-                    { transform: [{ scale: this.state.scale }] }
+                    {
+                        transform: [
+                            { scale: this.state.scale },
+                            {
+                                rotate: this.state.rotation.interpolate({
+                                    inputRange: [0, 1],
+                                    outputRange: ['0deg', '360deg']
+                                })
+                            }]
+                    }
                 ]}>
                     {this.adapterElement()}
                 </Animated.Text>
