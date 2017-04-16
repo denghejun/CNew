@@ -31,8 +31,8 @@ export default class CNewApp extends Component {
               scaleTo={1}
               scaleFriction={10}
               rotationable={true}
-              rotationOffet={10}
-              rotationFriction={3}
+              rotationOffet={2}
+              rotationFriction={1}
               element={(
                 <Image
                   style={Styles.logo}
