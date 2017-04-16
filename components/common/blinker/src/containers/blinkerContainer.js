@@ -8,11 +8,12 @@ import * as Views from '../views/_index'
 export default class BlinkerContainer {
     startBlinkAnimation = () => {
         if (this.props.blinkable) {
-            this.blinkIntervalTimeId = setInterval(
-                () => this.dispatch(Actions.createBlinkFlagChangeAction()),
-                this.props.blinkInterval
-            );
-
+            this.blinkTimeoutId = setTimeout(() => {
+                this.blinkIntervalTimeId = setInterval(
+                    () => this.dispatch(Actions.createBlinkFlagChangeAction()),
+                    this.props.blinkInterval
+                );
+            }, this.props.blinkTimeout);
             this.setBlinkTimeout();
         }
     }
@@ -41,11 +42,11 @@ export default class BlinkerContainer {
     }
 
     setBlinkTimeout() {
-        if (this.props.blinkTimeout !== undefined) {
-            this.blinkTimeoutId = setTimeout(() => {
+        if (this.props.blinkTime !== undefined) {
+            this.blinkTimeId = setTimeout(() => {
                 this.dispatch(Actions.createBlinkFlagChangeAction(true));
                 this.dispose();
-            }, this.props.blinkTimeout);
+            }, this.props.blinkTime);
         }
     }
 
@@ -56,6 +57,10 @@ export default class BlinkerContainer {
 
         if (this.blinkTimeoutId !== undefined) {
             clearTimeout(this.blinkTimeoutId);
+        }
+
+        if (this.blinkTimeId !== undefined) {
+            clearTimeout(this.blinkTimeId);
         }
     }
 

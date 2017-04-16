@@ -15,6 +15,7 @@ export default class Blinker extends React.Component {
             blinkable,
             blinkInterval,
             blinkTimeout,
+            blinkTime,
             scaleable,
             scaleFrom,
             scaleTo,
@@ -32,6 +33,7 @@ export default class Blinker extends React.Component {
                     blinkable={blinkable}
                     blinkInterval={blinkInterval}
                     blinkTimeout={blinkTimeout}
+                    blinkTime={blinkTime}
                     scaleable={scaleable}
                     scaleFrom={scaleFrom}
                     scaleTo={scaleTo}

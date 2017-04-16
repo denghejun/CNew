@@ -24,10 +24,11 @@ export default class CNewApp extends Component {
           <TouchableOpacity onPress={this.onLogoPress.bind(this)}>
             <Blinker
               blinkable={true}
-              blinkInterval={50}
-              blinkTimeout={200}
+              blinkInterval={30}
+              blinkTimeout={3300}
+              blinkTime={3500}
               scaleable={true}
-              scaleFrom={3}
+              scaleFrom={0}
               scaleTo={1}
               scaleFriction={10}
               rotationable={true}
@@ -48,8 +49,9 @@ export default class CNewApp extends Component {
           <TouchableOpacity>
             <Blinker
               blinkable={true}
-              blinkInterval={300}
-              blinkTimeout={4000}
+              blinkInterval={30}
+              blinkTimeout={3900}
+              blinkTime={4000}
               scaleable={true}
               scaleFrom={2}
               element={this.state.title}
