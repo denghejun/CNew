@@ -25,8 +25,8 @@ export default class Blinker extends React.Component {
                     rotationable={this.props.rotationable}
                     rotationOffet={this.props.rotationOffet}
                     rotationFriction={this.props.rotationFriction}
-                    element={this.props.element}
                     style={this.props.style}>
+                    {this.props.children}
                 </this.container>
             </Provider>
         );

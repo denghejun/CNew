@@ -75,7 +75,7 @@ export default class BlinkerContainer {
         return {
             blinkStyle: this.state.blinkFlag ? Styles.main.show : Styles.main.hidden,
             style: this.props.style,
-            element: this.props.element,
+            children: this.props.children,
             scale: this.state.scale,
             rotation: this.state.rotation
         }

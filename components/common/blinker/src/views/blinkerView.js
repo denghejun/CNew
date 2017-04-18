@@ -15,7 +15,7 @@ export default class BlinkerView extends React.Component {
     }
 
     render() {
-        const { blinkStyle, style, scale, rotation, element } = this.props;
+        const { blinkStyle, style, scale, rotation, children } = this.props;
         return (
             <View>
                 <Animated.Text style={[
@@ -31,7 +31,7 @@ export default class BlinkerView extends React.Component {
                         }]
                     }
                 ]}>
-                    {element}
+                    {children}
                 </Animated.Text>
             </View>
         )

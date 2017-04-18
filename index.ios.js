@@ -1,3 +1,4 @@
-import CNewApp from './components/home/'
 import { AppRegistry } from 'react-native'
+import CNewApp from './components/cnew/_index'
+
 AppRegistry.registerComponent('CNewApp', () => CNewApp);
