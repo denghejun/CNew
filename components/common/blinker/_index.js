@@ -11,38 +11,22 @@ export default class Blinker extends React.Component {
     }
 
     render() {
-        const {
-            blinkable,
-            blinkInterval,
-            blinkTimeout,
-            blinkTime,
-            scaleable,
-            scaleFrom,
-            scaleTo,
-            scaleFriction,
-            rotationable,
-            rotationOffet,
-            rotationFriction,
-            element,
-            style
-        } = this.props;
-
         return (
             <Provider store={this.store}>
                 <this.container
-                    blinkable={blinkable}
-                    blinkInterval={blinkInterval}
-                    blinkTimeout={blinkTimeout}
-                    blinkTime={blinkTime}
-                    scaleable={scaleable}
-                    scaleFrom={scaleFrom}
-                    scaleTo={scaleTo}
-                    scaleFriction={scaleFriction}
-                    rotationable={rotationable}
-                    rotationOffet={rotationOffet}
-                    rotationFriction={rotationFriction}
-                    element={element}
-                    style={style}>
+                    blinkable={this.props.blinkable}
+                    blinkInterval={this.props.blinkInterval}
+                    blinkTimeout={this.props.blinkTimeout}
+                    blinkTime={this.props.blinkTime}
+                    scaleable={this.props.scaleable}
+                    scaleFrom={this.props.scaleFrom}
+                    scaleTo={this.props.scaleTo}
+                    scaleFriction={this.props.scaleFriction}
+                    rotationable={this.props.rotationable}
+                    rotationOffet={this.props.rotationOffet}
+                    rotationFriction={this.props.rotationFriction}
+                    element={this.props.element}
+                    style={this.props.style}>
                 </this.container>
             </Provider>
         );
