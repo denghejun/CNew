@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import * as Containers from './src/containers/_index'
+import { Button, Text } from 'react-native'
 import { Provider } from 'react-redux'
+import * as Constants from '../constants/_index'
+import * as Containers from './src/containers/_index'
 import createStore from './src/store/_index'
 
 export default class CNewApp extends Component {
@@ -14,10 +16,10 @@ export default class CNewApp extends Component {
     return (
       <Provider store={this.store}>
         <this.cnewContainer
-          title='As You Know, New C-New!'
+          title={Constants.AS_YOU_KNOW_NEW_CNEW}
           logoImageURL={require('./src/images/logo.png')}
           onLogoPress={() => {
-            alert('OK!')
+            this.props.navigation.navigate('home')
           }}>
         </this.cnewContainer>
       </Provider>

@@ -1,5 +1,7 @@
 import React from 'react'
-import { Text, View, Image, TouchableWithoutFeedback, TouchableOpacity, TouchableHighlight } from 'react-native';
+import { Text, View, Image, TouchableWithoutFeedback, TouchableOpacity, TouchableHighlight, 
+         ActivityIndicator, Button, DatePickerIOS }
+from 'react-native';
 import Blinker from '../../../common/blinker/_index'
 import * as Styles from '../styles/_index'
 
