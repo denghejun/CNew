@@ -7,7 +7,7 @@ export default class Blinker extends React.Component {
     constructor(props) {
         super(props);
         this.store = createStore();
-        this.container = new Containers.BlinkerContainer.connect();
+        this.container = Containers.BlinkerContainer.connect();
     }
 
     render() {

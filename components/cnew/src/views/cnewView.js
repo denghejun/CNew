@@ -1,11 +1,13 @@
 import React from 'react'
-import { Text, View, Image, TouchableWithoutFeedback, TouchableOpacity, TouchableHighlight, 
-         ActivityIndicator, Button, DatePickerIOS }
-from 'react-native';
+import {
+    Text, View, Image, TouchableWithoutFeedback, TouchableOpacity, TouchableHighlight,
+    ActivityIndicator, Button, DatePickerIOS
+}
+    from 'react-native';
 import Blinker from '../../../common/blinker/_index'
 import * as Styles from '../styles/_index'
 
-export default class CNew extends React.Component {
+export default class CNewView extends React.Component {
     render() {
         const { title, logoImageURL, onLogoPress } = this.props;
         return (
@@ -20,9 +22,9 @@ export default class CNew extends React.Component {
                             scaleable={true}
                             scaleFrom={0}
                             scaleTo={1}
-                            scaleFriction={10}
+                            scaleFriction={5}
                             rotationable={true}
-                            rotationOffet={2}
+                            rotationOffet={3}
                             rotationFriction={1}>
                             <Image
                                 style={Styles.home.logo}
@@ -40,7 +42,7 @@ export default class CNew extends React.Component {
                             blinkTimeout={3900}
                             blinkTime={4000}
                             scaleable={true}
-                            scaleFrom={2}
+                            scaleFrom={3}
                             style={Styles.home.footerStyle}>
                             {title}
                         </Blinker>

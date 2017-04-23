@@ -9,7 +9,7 @@ export default class CNewApp extends Component {
   constructor(props) {
     super(props);
     this.store = createStore();
-    this.cnewContainer = Containers.CNewContainer.connect();
+    this.cnewContainer = new Containers.CNewContainer.connect();
   }
 
   render() {

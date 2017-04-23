@@ -1,9 +1,22 @@
-import blinkFlag from './blinkFlagStateReducer'
-import rotation from './rotationStateReducer'
-import scale from './scaleStateReducer'
+/**
+ * all modules should be apply at here. e.g: blinker, animation
+ * the state will be like below:
+ * {
+ *       animation: {
+ *          scale: new Animated.Value(0),
+ *          rotation: new Animated.Value(0)
+ *       },
+ *       blinker:{
+ *          blinkFlag:true,
+ *       }
+ *   }
+ */
+import { createStore, combineReducers } from 'redux'
+import animationReducers from './animationReducers'
+import blinkerReducers from './blinkerReducers'
+const reducers = combineReducers({
+    animation: animationReducers,
+    blinker: blinkerReducers
+});
 
-export default {
-    blinkFlag,
-    rotation,
-    scale
-}
+export default reducers;

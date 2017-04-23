@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Text, ScrollView, Animated } from 'react-native'
+import { View, Animated } from 'react-native'
 export default class BlinkerView extends React.Component {
 
     componentDidMount() {
@@ -16,6 +16,7 @@ export default class BlinkerView extends React.Component {
 
     render() {
         const { blinkStyle, style, scale, rotation, children } = this.props;
+        debugger;
         return (
             <View>
                 <Animated.Text style={[

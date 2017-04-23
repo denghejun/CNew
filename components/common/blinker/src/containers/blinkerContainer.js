@@ -1,7 +1,7 @@
 import React from 'react'
-import { Text, Animated } from 'react-native'
+import { Text, Animated, Easing } from 'react-native'
 import { connect } from 'react-redux'
-import * as Actions from '../actions/_index'
+import ActionCreators from '../actions/_index'
 import * as Styles from '../styles/_index'
 import * as Views from '../views/_index'
 
@@ -10,7 +10,7 @@ export default class BlinkerContainer {
         if (this.props.blinkable) {
             this.blinkTimeoutId = setTimeout(() => {
                 this.blinkIntervalTimeId = setInterval(
-                    () => this.dispatch(Actions.createBlinkFlagChangeAction()),
+                    () => this.dispatch(ActionCreators.blinker.blink.change()),
                     this.props.blinkInterval
                 );
             }, this.props.blinkTimeout);
@@ -20,9 +20,13 @@ export default class BlinkerContainer {
 
     startScaleAnimation() {
         if (this.props.scaleable === true) {
-            this.state.scale.setValue(this.props.scaleFrom || 0);
+            const scaleFrom = this.props.scaleFrom || 0;
+            const scale = new Animated.Value(1);
+            scale.setValue(scaleFrom);
+            scale.addListener(data => this.dispatch(ActionCreators.animation.scale.change(new Animated.Value(data.value))));
+            this.dispatch(ActionCreators.animation.scale.change(scaleFrom));
             Animated.parallel([
-                Animated.spring(this.state.scale, {
+                Animated.spring(scale, {
                     toValue: this.props.scaleTo || 1,
                     friction: this.props.scaleFriction || 1,
                 }),
@@ -32,8 +36,10 @@ export default class BlinkerContainer {
 
     startRotationAnimation() {
         if (this.props.rotationable === true) {
+            const rotation = new Animated.Value(0);
+            rotation.addListener(data => this.dispatch(ActionCreators.animation.rotation.change(new Animated.Value(data.value))));
             Animated.parallel([
-                Animated.spring(this.state.rotation, {
+                Animated.spring(rotation, {
                     toValue: this.props.rotationOffet || 0,
                     friction: this.props.rotationFriction || 1,
                 }),
@@ -44,7 +50,7 @@ export default class BlinkerContainer {
     setBlinkTimeout() {
         if (this.props.blinkTime !== undefined) {
             this.blinkTimeId = setTimeout(() => {
-                this.dispatch(Actions.createBlinkFlagChangeAction(true));
+                this.dispatch(ActionCreators.blinker.blink.change(true));
                 this.dispose();
             }, this.props.blinkTime);
         }
@@ -73,11 +79,11 @@ export default class BlinkerContainer {
     mapStateToProps = (state, ownProps) => {
         this.config(state, ownProps, this.dispatch);
         return {
-            blinkStyle: this.state.blinkFlag ? Styles.main.show : Styles.main.hidden,
+            blinkStyle: this.state.blinker.blinkFlag ? Styles.main.show : Styles.main.hidden,
             style: this.props.style,
             children: this.props.children,
-            scale: this.state.scale,
-            rotation: this.state.rotation
+            scale: this.state.animation.scale,
+            rotation: this.state.animation.rotation
         }
     }
 
