@@ -5,15 +5,16 @@ import * as Views from '../views/_index'
 export default class CNewContainer {
     static connect() {
         const container = new CNewContainer();
-        return connect((state, ownProps) => {
-            return {
+        return connect(
+            (state, ownProps) => ({
                 title: ownProps.title,
+                cnewTitle: ownProps.cnewTitle,
                 logoImageURL: ownProps.logoImageURL,
-            }
-        }, (dispatch, ownProps) => {
-            return {
-                OnLogoPress: ownProps.OnLogoPress
-            }
-        })(Views.CNewView)
+                cnewImageURL: ownProps.cnewImageURL
+            }),
+            (dispatch, ownProps) => ({
+                onLogoPress: () => ownProps.navigation.navigate('home')
+            })
+        )(Views.CNewView)
     }
 }

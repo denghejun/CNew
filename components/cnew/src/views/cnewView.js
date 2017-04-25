@@ -9,10 +9,10 @@ import * as Styles from '../styles/_index'
 
 export default class CNewView extends React.Component {
     render() {
-        const { title, logoImageURL, onLogoPress } = this.props;
+        const { title, cnewTitle, logoImageURL, cnewImageURL, onLogoPress } = this.props;
         return (
             <View style={Styles.home.container}>
-                <View style={Styles.home.body}>
+                <View style={Styles.home.logo}>
                     <TouchableOpacity onPress={onLogoPress}>
                         <Blinker
                             blinkable={true}
@@ -27,14 +27,14 @@ export default class CNewView extends React.Component {
                             rotationOffet={3}
                             rotationFriction={1}>
                             <Image
-                                style={Styles.home.logo}
+                                style={Styles.home.logoImage}
                                 source={logoImageURL}>
                             </Image>
                         </Blinker>
                     </TouchableOpacity>
                 </View>
 
-                <View style={Styles.home.footer}>
+                <View style={Styles.home.title}>
                     <TouchableOpacity>
                         <Blinker
                             blinkable={true}
@@ -43,10 +43,30 @@ export default class CNewView extends React.Component {
                             blinkTime={4000}
                             scaleable={true}
                             scaleFrom={3}
-                            style={Styles.home.footerStyle}>
+                            style={Styles.home.titleText}>
                             {title}
                         </Blinker>
                     </TouchableOpacity>
+                </View>
+
+                <View style={Styles.home.cnew}>
+                    <Blinker
+                        scaleable={true}
+                        scaleFrom={1.2}
+                        rotationable={true}
+                        rotationOffet={1}
+                        rotationFriction={150}
+                        style={Styles.home.cnewImage}>
+                        <Image style={Styles.home.cnewLogo} source={cnewImageURL} />
+                    </Blinker>
+                    <Blinker
+                        blinkable={true}
+                        blinkInterval={30}
+                        blinkTimeout={8000}
+                        blinkTime={8300}
+                        style={Styles.home.cnewWords}>
+                        {cnewTitle}
+                    </Blinker>
                 </View>
             </View>
         );

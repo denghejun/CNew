@@ -6,13 +6,15 @@ import * as Styles from './styles/_index'
 const CNewApp = StackNavigator(
     {
         cnew: {
-            screen: Components.cnew, navigationOptions: ({ navigation }) => ({
+            screen: Components.cnew,
+            navigationOptions: ({ navigation }) => ({
                 headerStyle: Styles.main.cnewHeader,
                 headerVisible: false
             }),
         },
         home: {
-            screen: Components.home, navigationOptions: ({ navigation }) => ({
+            screen: Components.home,
+            navigationOptions: ({ navigation }) => ({
                 title: Constants.NEW_CNEW,
                 headerTitleStyle: Styles.main.homeHeaderTitle,
             })
