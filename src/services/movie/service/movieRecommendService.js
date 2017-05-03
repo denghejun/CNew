@@ -16,39 +16,5 @@ export default class MovieRecommendService extends JuheApiService {
                     return response;
                 }
             })
-            .then(successResponse => {
-                convertedRecommendMovieResponse = {
-                    ...successResponse, ...{
-                        result: {
-                            data: successResponse.result.data.map(o => {
-                                o = {
-                                    ...o, ...{
-                                        data: o.data.map(p => Object.assign(new Models.MovieRecommend(), p))
-                                    }
-                                }
-
-                                return o;
-                            })
-                        }
-                    }
-                }
-
-                return convertedRecommendMovieResponse;
-            })
-            .then(convertedRecommendMovieResponse => {
-                convertedRecommendMovieCategory = {
-                    ...convertedRecommendMovieResponse, ...{
-                        result: {
-                            data: convertedRecommendMovieResponse.result.data.map(o => Object.assign(new Models.MovieRecommendCategory(), o))
-                        }
-                    }
-                }
-
-                return convertedRecommendMovieCategory;
-            })
-            .then(convertedRecommendMovieCategory => {
-                return Object.assign(new Models.MovieRecommandResponse(), convertedRecommendMovieCategory)
-            })
-            .catch(error => { alert(error) })
     }
 }

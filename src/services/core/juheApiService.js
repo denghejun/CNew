@@ -6,12 +6,12 @@ export default class JuheApiService {
     }
 
     get(params) {
+        // return Promise.resolve(data);
         let uri = this.apiURI + '?&city=成都&key=' + this.key;
         return fetch(uri, {
             method: 'GET'
         }).then(response => {
-            return data;
-            // return response.json()
+            return response.json()
         })
     }
 }

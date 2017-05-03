@@ -11,7 +11,7 @@
  *       }
  *   }
  */
-import { createStore, combineReducers } from 'redux'
+import { combineReducers } from 'redux'
 import animationReducers from './animationReducers'
 import blinkerReducers from './blinkerReducers'
 const reducers = combineReducers({

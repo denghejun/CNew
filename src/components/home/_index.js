@@ -1,28 +1,20 @@
 import React from 'react'
-import { View, Text, Image } from 'react-native'
-import Services from '../../services/movie/_index'
+import { Provider } from 'react-redux';
+import createStore from './src/store/_index'
+import * as Containers from './src/containers/_index'
 
 export default class HomeScreen extends React.Component {
     constructor(props) {
-        super(props)
-        this.state = { img: ' ' }
-    }
-
-    componentDidMount() {
-        Services.movieRecommendService.getRecommandMovies().then(response => {
-            let uri = response.result.data[1].data[0].iconaddress;
-            this.setState({ img: uri.substring(0, uri.indexOf('?')) });
-        })
+        super(props);
+        this.store = createStore();
+        this.container = Containers.MovieRecommendContainer.connect();
     }
 
     render() {
         return (
-            <View>
-                <Image style={{
-                    height: 200,
-                    resizeMode: 'stretch',
-                }} source={{ uri: this.state.img }} />
-            </View>
-        )
+            <Provider store={this.store}>
+                <this.container />
+            </Provider>
+        );
     }
 }

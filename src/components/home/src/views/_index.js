@@ -1,0 +1,1 @@
+export { default as movieRecommendView } from './movieRecommendView'

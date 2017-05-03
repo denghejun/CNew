@@ -23,7 +23,7 @@ export default class CNewView extends React.Component {
                 <Video
                     repeat
                     resizeMode='cover'
-                    source={require('../assets/video/v1.mp4')}
+                    source={videoURL}
                     style={Styles.video.backgroundVideo}
                 />
                 <View style={Styles.home.logo}>
