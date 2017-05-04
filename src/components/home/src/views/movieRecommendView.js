@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Image } from 'react-native'
+import { View, Image, ActivityIndicator } from 'react-native'
 
 export default class MovieRecommendView extends React.Component {
     componentDidMount() {
@@ -12,8 +12,10 @@ export default class MovieRecommendView extends React.Component {
                 <Image style={{
                     height: 200,
                     resizeMode: 'stretch',
-                }} source={this.props.imageSource}></Image>
-            </View>
+                }} source={this.props.imageSource}>
+                    <ActivityIndicator size='small' color='orange' animating={this.props.isLoading} />
+                </Image>
+            </View >
         )
     }
 }

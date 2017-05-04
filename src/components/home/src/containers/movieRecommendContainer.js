@@ -29,7 +29,8 @@ export default class MovieRecommendContainer {
 
     mapStateToProps = (state, ownProps) => {
         return {
-            imageSource: this.getRandomImageSource(state)
+            imageSource: this.getRandomImageSource(state),
+            isLoading: state.movie.recommend.isLoading
         }
     }
 
