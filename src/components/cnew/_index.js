@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Text } from 'react-native'
 import { Provider } from 'react-redux'
-import * as Constants from '../constants/_index'
+import Config from 'react-native-config'
 import * as Containers from './src/containers/_index'
 import createStore from './src/store/_index'
 
@@ -16,8 +16,8 @@ export default class CNew extends Component {
     return (
       <Provider store={this.store}>
         <this.cnewContainer
-          title={Constants.AS_YOU_KNOW_NEW_CNEW}
-          cnewTitle={Constants.CNEW_TITLE}
+          title={Config.TEXT_AS_YOU_KNOW_NEW_CNEW}
+          cnewTitle={Config.TEXT_CNEW_TITLE}
           logoImageURL={require('./src/assets/image/logo.png')}
           cnewImageURL={require('./src/assets/image/cnew.png')}
           videoURL={require('./src/assets/video/v1.mp4')}

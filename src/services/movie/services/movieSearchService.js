@@ -1,6 +1,8 @@
 import JuheApiService from '../../core/juheApiService'
+import Config from 'react-native-config'
+
 export default class MovieSearchService extends JuheApiService {
     constructor() {
-        super('http://op.juhe.cn/onebox/movie/video')
+        super(Config.API_URL_SEARCH_MOVIE)
     }
 }

@@ -1,9 +1,9 @@
 import JuheApiService from '../../core/juheApiService'
-import * as Models from '../model/_index'
+import Config from 'react-native-config'
 
 export default class MovieRecommendService extends JuheApiService {
     constructor() {
-        super('http://op.juhe.cn/onebox/movie/pmovie')
+        super(Config.API_URL_RECOMMEND_MOVIE)
     }
 
     getRecommandMovies() {

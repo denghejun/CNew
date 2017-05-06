@@ -1,5 +1,5 @@
 import { StackNavigator } from 'react-navigation'
-import * as Constants from '../constants/_index'
+import Config from 'react-native-config'
 import * as Components from '../_index'
 import * as Styles from './styles/_index'
 
@@ -15,7 +15,7 @@ const CNewApp = StackNavigator(
         home: {
             screen: Components.home,
             navigationOptions: ({ navigation }) => ({
-                title: Constants.NEW_CNEW,
+                title: Config.TEXT_NEW_CNEW,
                 headerTitleStyle: Styles.main.homeHeaderTitle,
             })
         }

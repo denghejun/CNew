@@ -1,5 +1,5 @@
-import MovieRecommendService from './service/movieRecommendService'
-import MovieSearchService from './service/movieSearchService'
+import MovieRecommendService from './services/movieRecommendService'
+import MovieSearchService from './services/movieSearchService'
 
 export default services = {
     movieRecommendService: new MovieRecommendService(),

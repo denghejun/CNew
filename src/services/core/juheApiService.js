@@ -1,7 +1,9 @@
 import data from './data.json'
+import Config from 'react-native-config'
+
 export default class JuheApiService {
     constructor(apiURI) {
-        this.key = '07d77e2e7f3ad6828cb78f89cdb8a644';
+        this.key = Config.API_KEY_JUHE_DATA;
         this.apiURI = apiURI;
     }
 
