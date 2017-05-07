@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as Views from '../views/_index'
+import { Actions } from 'react-native-router-flux'
 
 export default class CNewContainer {
     static connect() {
@@ -14,7 +15,7 @@ export default class CNewContainer {
                 videoURL: ownProps.videoURL
             }),
             (dispatch, ownProps) => ({
-                onLogoPress: () => ownProps.navigation.navigate('home')
+                onLogoPress: () => Actions.home()
             })
         )(Views.CNewView)
     }

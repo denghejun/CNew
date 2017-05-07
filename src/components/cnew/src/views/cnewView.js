@@ -20,12 +20,12 @@ export default class CNewView extends React.Component {
         const { title, cnewTitle, logoImageURL, cnewImageURL, videoURL, onLogoPress } = this.props;
         return (
             <View style={Styles.home.container}>
-                <Video
+                {/*<Video
                     repeat
                     resizeMode='cover'
                     source={videoURL}
                     style={Styles.video.backgroundVideo}
-                />
+                />*/}
                 <View style={Styles.home.logo}>
                     <TouchableOpacity onPress={onLogoPress}>
                         <Blinker

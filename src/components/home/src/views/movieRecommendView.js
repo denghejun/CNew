@@ -9,17 +9,17 @@ export default class MovieRecommendView extends React.Component {
 
     render() {
         return (
-            <View style={{flexDirection:'row'}}>
+            <View style={{ flexDirection: 'row', backgroundColor: 'black', flex: 1 }}>
                 <Image style={{
                     height: height(30),
-                    width:width(50),
+                    width: width(50),
                     resizeMode: 'stretch',
                 }} source={this.props.imageSource}>
                     <ActivityIndicator size='small' color='orange' animating={this.props.isLoading} />
                 </Image>
                 <Image style={{
                     height: height(30),
-                    width:width(50),
+                    width: width(50),
                     resizeMode: 'stretch',
                 }} source={this.props.imageSource}>
                     <ActivityIndicator size='small' color='orange' animating={this.props.isLoading} />
