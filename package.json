@@ -10,6 +10,7 @@
     "prop-types": "^15.5.8",
     "react": "16.0.0-alpha.6",
     "react-native": "0.43.1",
+    "react-native-cache-store": "^1.0.2",
     "react-native-config": "^0.4.2",
     "react-native-dimension": "^1.0.6",
     "react-native-router-flux": "^3.38.1",

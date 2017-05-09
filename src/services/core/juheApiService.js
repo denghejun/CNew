@@ -8,8 +8,16 @@ export default class JuheApiService {
     }
 
     get(params) {
-        // return Promise.resolve(data);
-        let uri = this.apiURI + '?&city=成都&key=' + this.key;
+        let uri = this.apiURI + '?key=' + this.key;
+        if (typeof (params) === typeof ('')) {
+            uri += '&' + params;
+        }
+        else if (typeof (params) === typeof ({})) {
+            Object.keys(params).forEach(key => {
+                uri += '&' + key + '=' + params[key]
+            })
+        }
+
         return fetch(uri, {
             method: 'GET'
         }).then(response => {
