@@ -1,1 +1,3 @@
-export { default as movieService } from './movie/_index'
+import * as MovieService from './movie/_index'
+
+export default { MovieService } 

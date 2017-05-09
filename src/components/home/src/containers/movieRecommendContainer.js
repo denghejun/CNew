@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import * as Views from '../views/_index'
 import actionCreators from '../actions/_index'
-import * as Services from '../../../../services/_index'
+import Services from '../../../../services/_index'
 
 export default class MovieRecommendContainer {
     getRandomImageSource(state) {
@@ -17,7 +17,7 @@ export default class MovieRecommendContainer {
     getRecommendMovies() {
         return (dispatch, getState) => {
             dispatch(actionCreators.movie.recommend.fetch.start())
-            return Services.movieService.movieRecommendService.getRecommandMovies({ city: '成都' })
+            return Services.MovieService.MovieRecommendService.Cache.getRecommendMoviesFromCache({ city: '成都' })
                 .then(response => {
                     dispatch(actionCreators.movie.recommend.fetch.success(response))
                 })
