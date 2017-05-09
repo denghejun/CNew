@@ -1,4 +1,3 @@
-import data from './data.json'
 import Config from 'react-native-config'
 
 export default class JuheApiService {
