@@ -7,11 +7,13 @@ export default class MovieRecommendService extends JuheApiService {
         super(Config.API_URL_RECOMMEND_MOVIE)
     }
 
+    static Default = new MovieRecommendService()
+
     static Cache = {
         getRecommendMoviesFromCache: (params) => {
             const key = Config.CACHE_KEY_PREFIX_MOVIE_RECOMMEND + params.city;
             const refreshCache = (key, params) => {
-                return new MovieRecommendService().getRecommendMovies(params).then(response => {
+                return MovieRecommendService.Default.getRecommendMovies(params).then(response => {
                     let expireTime = Number.parseInt(Config.CACHE_NORMAL_EXPIRE_TIME);
                     debugger;
                     Cache.set(key, response, expireTime);
