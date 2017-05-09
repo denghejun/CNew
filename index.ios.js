@@ -1,6 +1,3 @@
-import { AppRegistry } from 'react-native'
-import CNewApp from './src/components/router/_index'
-import Cache from 'react-native-cache-store'
+import Bootstrapper from './src/bootstrapper'
 
-Cache.flush();
-AppRegistry.registerComponent('CNewApp', () => CNewApp)
+Bootstrapper.start();
