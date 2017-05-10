@@ -17,7 +17,7 @@ export default class MovieRecommendContainer {
     getRecommendMovies() {
         return (dispatch, getState) => {
             dispatch(actionCreators.movie.recommend.fetch.start())
-            return Services.MovieService.MovieRecommendService.Cache.getRecommendMoviesFromCache({ city: '成都' })
+            return Services.MovieService.MovieRecommendService.Cache.getRecommendMovies({ city: '成都' })
                 .then(response => {
                     dispatch(actionCreators.movie.recommend.fetch.success(response))
                 })
