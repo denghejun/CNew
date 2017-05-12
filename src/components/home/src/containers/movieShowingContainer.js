@@ -1,9 +1,7 @@
-import { connect } from 'react-redux'
-import * as Views from '../views/_index'
 import actionCreators from '../actions/_index'
 import Services from '../../../../services/_index'
 
-export default class MovieRecommendContainer {
+export default class movieShowingContainer {
     getRandomImageSource(state) {
         let imageURL = 'http://'
         if (state.movie.recommend.data !== undefined) {
@@ -38,10 +36,5 @@ export default class MovieRecommendContainer {
         return {
             onComponentDidMount: () => dispatch(this.getRecommendMovies())
         }
-    }
-
-    static connect() {
-        const container = new MovieRecommendContainer();
-        return connect(container.mapStateToProps, container.mapDispatchToProps)(Views.movieRecommendView)
     }
 }
