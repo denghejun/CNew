@@ -20,19 +20,23 @@ export default class MovieScreen extends React.Component {
         this.movieSearchContainer = Containers.MovieSearchContainer.connect();
     }
 
+    componentDidMount() {
+        this.router({ position: 0 });
+    }
+
     router(nav) {
         const { position } = nav;
         switch (position) {
             case 0:
-                Actions.refresh({ title: '正在上映' });
+                Actions.movie_showing();
                 break;
 
             case 1:
-                Actions.refresh({ title: '即将上映' });
+                Actions.movie_coming();
                 break;
 
             case 2:
-                Actions.refresh({ title: '电影搜索' });
+                Actions.movie_search();
                 break;
 
             default:
@@ -73,7 +77,6 @@ export default class MovieScreen extends React.Component {
             <Provider store={this.store}>
                 <View style={{ flex: 1 }}>
                     <IndicatorViewPager
-                        initialPage={this.props.initialPage}
                         scrollEnabled={true}
                         ref={(c) => this.viewPager = c}
                         style={{ height: height(100) }}

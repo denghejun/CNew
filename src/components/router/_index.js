@@ -8,11 +8,11 @@ export default class CNewApp extends React.Component {
         return (
             <Router>
                 <Scene key='root'>
-                    <Scene key='cnew' component={Components.cnew} initial={true} hideNavBar={true} />
-                    <Scene tabs={true} key='movie' >
-                        <Scene key='movie_showing' duration={1} component={Components.movie} title='正在上映' navigationBarStyle={Styles.scene.navigationBarStyle} />
-                        <Scene key='movie_coming' duration={1} component={Components.movie} title='即将上映' navigationBarStyle={Styles.scene.navigationBarStyle} />
-                        <Scene key='movie_search' duration={1} component={Components.movie} title='电影搜索' navigationBarStyle={Styles.scene.navigationBarStyle} />
+                    <Scene key='cnew' duration={300} component={Components.cnew} initial={true} hideNavBar={true} />
+                    <Scene key='movie' renderBackButton={() => { }} component={Components.movie} navigationBarStyle={Styles.scene.navigationBarStyle} hideNavBar={false}>
+                        <Scene key='movie_showing' title='正在上映' navigationBarStyle={Styles.scene.navigationBarStyle} />
+                        <Scene key='movie_coming' title='即将上映' navigationBarStyle={Styles.scene.navigationBarStyle} />
+                        <Scene key='movie_search' title='电影搜索' navigationBarStyle={Styles.scene.navigationBarStyle} />
                     </Scene>
                 </Scene>
             </Router>
