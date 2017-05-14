@@ -15,7 +15,7 @@ export default class CNewContainer {
                 videoURL: ownProps.videoURL
             }),
             (dispatch, ownProps) => ({
-                onLogoPress: () => Actions.home()
+                onLogoPress: () => Actions.movie()
             })
         )(Views.CNewView)
     }

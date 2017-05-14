@@ -1,21 +1,27 @@
 import actionCreators from '../actions/_index'
 import Services from '../../../../services/_index'
+import { ListView } from 'react-native'
 
-export default class movieShowingContainer {
-    getRandomImageSource(state) {
-        let imageURL = 'http://'
+export default class MovieComingContainer {
+    getComingMovies(state) {
+        const dataSource = new ListView.DataSource({
+            rowHasChanged: (r1, r2) => r1.uuid !== r2.uuid
+        });
+
         if (state.movie.recommend.data !== undefined) {
-            let uri = state.movie.recommend.data.result.data[1].data[0].iconaddress;
-            imageURL = uri.substring(0, uri.indexOf('?'));
+            const showingMovies = state.movie.recommend.data.result.data[0].data;
+            const hasData = showingMovies.length > 0;
+            return hasData ? dataSource.cloneWithRows(showingMovies) : dataSource;
         }
-
-        return { uri: imageURL }
+        else {
+            return dataSource;
+        }
     }
 
     getRecommendMovies() {
         return (dispatch, getState) => {
             dispatch(actionCreators.movie.recommend.fetch.start())
-            return Services.MovieService.MovieRecommendService.Cache.getRecommendMovies({ city: '成都' })
+            return Services.MovieService.MovieRecommendService.Cache.Mock.getRecommendMovies({ city: '成都' })
                 .then(response => {
                     dispatch(actionCreators.movie.recommend.fetch.success(response))
                 })
@@ -27,14 +33,14 @@ export default class movieShowingContainer {
 
     mapStateToProps = (state, ownProps) => {
         return {
-            imageSource: this.getRandomImageSource(state),
+            comingMovies: this.getComingMovies(state),
             isLoading: state.movie.recommend.isLoading
         }
     }
 
     mapDispatchToProps = (dispatch, ownProps) => {
         return {
-            onComponentDidMount: () => dispatch(this.getRecommendMovies())
+            onComponentDidMount: () => dispatch(this.getRecommendMovies()),
         }
     }
 }

@@ -1,6 +1,7 @@
 import JuheApiService from '../../core/juheApiService'
 import Config from 'react-native-config'
 import Cache from 'react-native-cache-store'
+import mockedRecommendMovies from '../mock/recommendMovieData'
 
 export default class MovieRecommendService extends JuheApiService {
     constructor() {
@@ -25,6 +26,11 @@ export default class MovieRecommendService extends JuheApiService {
             }).catch(cache => {
                 return cache || refreshCache(key, params);
             });
+        },
+        Mock: {
+            getRecommendMovies: (params) => {
+                return Promise.resolve().then(() => mockedRecommendMovies);
+            }
         }
     }
 

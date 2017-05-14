@@ -5,9 +5,13 @@ import createStore from './src/store/_index'
 import * as Containers from './src/containers/_index'
 import { width, height, totalSize } from 'react-native-dimension'
 import { PagerTabIndicator, IndicatorViewPager, PagerTitleIndicator, PagerDotIndicator } from 'rn-viewpager';
+import { Actions } from 'react-native-router-flux'
 
+const contextTypes = {
+    drawer: React.PropTypes.object,
+};
 
-export default class HomeScreen extends React.Component {
+export default class MovieScreen extends React.Component {
     constructor(props) {
         super(props);
         this.store = createStore();
@@ -16,15 +20,35 @@ export default class HomeScreen extends React.Component {
         this.movieSearchContainer = Containers.MovieSearchContainer.connect();
     }
 
-    _renderTitleIndicator() {
-        return <PagerTitleIndicator titles={['one', 'two', 'three']} />;
+    router(nav) {
+        const { position } = nav;
+        switch (position) {
+            case 0:
+                Actions.refresh({ title: '正在上映' });
+                break;
+
+            case 1:
+                Actions.refresh({ title: '即将上映' });
+                break;
+
+            case 2:
+                Actions.refresh({ title: '电影搜索' });
+                break;
+
+            default:
+                break;
+        }
     }
 
-    _renderDotIndicator() {
+    renderTitleIndicator() {
+        return <PagerTitleIndicator titles={['正在上映', '即将上映', '电影搜索']} />;
+    }
+
+    renderDotIndicator() {
         return <PagerDotIndicator selectedDotStyle={{ backgroundColor: 'orange', transform: [{ scale: 2 }] }} pageCount={3} />;
     }
 
-    _renderTabIndicator() {
+    renderTabIndicator() {
         let tabs = [{
             text: '正在上映',
             iconSource: require('./src/assets/image/icon_movie_showing_x16.png'),
@@ -48,11 +72,15 @@ export default class HomeScreen extends React.Component {
         return (
             <Provider store={this.store}>
                 <View style={{ flex: 1 }}>
-                    <IndicatorViewPager scrollEnabled={true}
+                    <IndicatorViewPager
+                        initialPage={this.props.initialPage}
+                        scrollEnabled={true}
+                        ref={(c) => this.viewPager = c}
                         style={{ height: height(100) }}
                         autoPlayEnable={false}
                         autoPlayInterval={1000}
-                        indicator={this._renderTabIndicator()}>
+                        onPageSelected={(nav) => this.router(nav)}
+                        indicator={this.renderDotIndicator()}>
                         <View style={{ flex: 1 }}>
                             <this.movieShowingContainer />
                         </View>
@@ -70,3 +98,5 @@ export default class HomeScreen extends React.Component {
         );
     }
 }
+
+MovieScreen.contextTypes = contextTypes;
