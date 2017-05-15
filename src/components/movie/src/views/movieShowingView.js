@@ -16,10 +16,11 @@ import {
 import { width, height, totalSize } from 'react-native-dimension'
 import PullToRefreshListView from 'react-native-smart-pull-to-refresh-listview'
 import FlipCard from 'react-native-flip-card'
+import Spinner from 'react-native-spinkit'
 
 export default class MovieShowingView extends React.Component {
     componentDidMount() {
-       this.props.onComponentDidMount();
+        this.props.onComponentDidMount();
     }
 
     _renderRow = (rowData, sectionID, rowID) => {
@@ -27,18 +28,16 @@ export default class MovieShowingView extends React.Component {
             <View style={styles.thumbnail}>
                 <View>
                     <FlipCard style={{
-                        height: height(21),
+                        height: height(36),
                         width: width(46),
                         borderColor: 'transparent'
                     }}>
                         <View>
-                            <Image source={{ uri: rowData.iconaddress.substring(0, rowData.iconaddress.indexOf('?')) }} style={{
-                                height: height(20),
-                                width: width(45),
-                                resizeMode: 'stretch',
-                                justifyContent: 'center',
-                                alignItems: 'center',
-                            }} />
+                            <Image source={{ uri: rowData.iconaddress.substring(0, rowData.iconaddress.indexOf('?')) }}
+                                style={{
+                                    height: height(35),
+                                    width: width(45),
+                                }} />
                         </View>
                         <View>
                             <Text>{rowData.tvTitle}</Text>
@@ -86,8 +85,9 @@ export default class MovieShowingView extends React.Component {
                 )
             case refreshing:
                 return (
-                    <View style={{ flexDirection: 'row', height: 35, justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent', }}>
-                        {this._renderActivityIndicator()}<Text style={{ fontSize: 10, color: 'gray' }}>正在获取数据 ...</Text>
+                    <View style={{ flexDirection: 'column', height: 35, justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent', }}>
+                        <Spinner type='FadingCircleAlt' size={20} color='#cccccc' />
+                        {/*<Text style={{ fontSize: 10, color: 'gray' }}>正在获取数据 ...</Text>*/}
                     </View>
                 )
         }
@@ -114,13 +114,14 @@ export default class MovieShowingView extends React.Component {
                 return (
                     <View style={{ height: 35, justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent', }}>
                         {/*<Text>可以松开啦！{pullDistancePercent > 100 ? 100 : pullDistancePercent}%</Text>*/}
-                        {this._renderActivityIndicator()}<Text style={{ fontSize: 10, color: 'gray' }}>正在获取数据 ...</Text>
+                        <Spinner type='FadingCircleAlt' size={20} color='#cccccc' />
                     </View>
                 )
             case loading_more:
                 return (
                     <View style={{ flexDirection: 'row', height: 35, justifyContent: 'center', alignItems: 'center', backgroundColor: 'transparent', }}>
-                        {this._renderActivityIndicator()}<Text style={{ fontSize: 10, color: 'gray' }}>正在获取数据 ...</Text>
+                        {/*<Spinner type='FadingCircleAlt' size={20} color='#cccccc'/>*/}
+                        <Text style={{ fontSize: 10, color: 'gray' }}>正在获取数据 ...</Text>
                     </View>
                 )
             case loaded_all:
@@ -142,29 +143,6 @@ export default class MovieShowingView extends React.Component {
         this._pullToRefreshListView.endLoadMore(false)
     }
 
-    _renderActivityIndicator() {
-        return ActivityIndicator ? (
-            <ActivityIndicator
-                style={{ marginRight: 10, }}
-                animating={true}
-                color={'#ff0000'}
-                size={'small'} />
-        ) : Platform.OS == 'android' ?
-                (
-                    <ProgressBarAndroid
-                        style={{ marginRight: 10, }}
-                        color={'#ff0000'}
-                        styleAttr={'Small'} />
-
-                ) : (
-                    <ActivityIndicatorIOS
-                        style={{ marginRight: 10, }}
-                        animating={true}
-                        color={'#ff0000'}
-                        size={'small'} />
-                )
-    }
-
     render() {
         return (
             <View style={{ flex: 1, paddingTop: 60 }}>
@@ -182,10 +160,10 @@ export default class MovieShowingView extends React.Component {
                     //renderSeparator={(sectionID, rowID) => <View style={styles.separator} />}
                     onRefresh={this.onRefresh}
                     onLoadMore={this._onLoadMore}
-                    pullUpDistance={35}
-                    pullUpStayDistance={50}
-                    pullDownDistance={35}
-                    pullDownStayDistance={50}
+                    pullUpDistance={100}
+                    pullUpStayDistance={100}
+                    pullDownDistance={100}
+                    pullDownStayDistance={100}
                 />
             </View>
         )
