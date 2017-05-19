@@ -34,8 +34,7 @@ export default class MovieShowingView extends React.Component {
                     <TouchableOpacity onPress={() => this.props.onMovieItemFlipped(rowID)}>
                         <FlipCard friction={!movieItemFlipFlag ? 6 : 30} clickable={false} flip={movieItemFlipFlag} style={Styles.showingMovie.flipCard}>
                             <View>
-                                <Image source={{ uri: movieItemImageUrl }}
-                                    style={Styles.showingMovie.movieItemImage} />
+                                <Image source={{ uri: movieItemImageUrl }} style={Styles.showingMovie.movieItemImage} />
                             </View>
                             <View style={Styles.showingMovie.flipCardBack}>
                                 <Text style={Styles.showingMovie.movieName}>{rowData.tvTitle}</Text>
@@ -50,8 +49,7 @@ export default class MovieShowingView extends React.Component {
                     <TouchableOpacity onPress={() => this.props.onMovieItemFlipped(rowID)}>
                         <FlipCard friction={movieItemFlipFlag ? 6 : 30} clickable={false} flip={!movieItemFlipFlag} style={Styles.showingMovie.flipCard}>
                             <View>
-                                <Image source={{ uri: movieItemImageUrl }}
-                                    style={Styles.showingMovie.movieItemImage} />
+                                <Image source={{ uri: movieItemImageUrl }} style={Styles.showingMovie.movieItemImage} />
                             </View>
                             <View style={Styles.showingMovie.flipCardBack}>
                                 <Text>{rowData.subHead}</Text>
