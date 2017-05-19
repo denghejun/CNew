@@ -59,8 +59,6 @@ export default class MovieShowingView extends React.Component {
                             </View>
                         </FlipCard>
                     </TouchableOpacity>
-
-
                 </View>
             </View >
         )
