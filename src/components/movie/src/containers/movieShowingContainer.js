@@ -8,14 +8,7 @@ export default class movieShowingContainer {
             rowHasChanged: (r1, r2) => r1.uuid !== r2.uuid
         });
 
-        if (state.movie.recommend.data !== undefined) {
-            const showingMovies = state.movie.recommend.data.result.data[0].data;
-            const hasData = showingMovies.length > 0;
-            return hasData ? dataSource.cloneWithRows(showingMovies) : dataSource;
-        }
-        else {
-            return dataSource;
-        }
+        return state.movie.recommend.movies !== undefined ? dataSource.cloneWithRows(state.movie.recommend.movies) : dataSource;
     }
 
     getRecommendMovies() {
@@ -31,10 +24,24 @@ export default class movieShowingContainer {
         }
     }
 
+    changeMovieItemFlip(index) {
+        return (dispatch, getState) => {
+            Promise.resolve(this.timeId)
+                .then(timeId => clearTimeout(timeId))
+                .then(() => {
+                    this.timeId = setTimeout(() => {
+                        dispatch(actionCreators.movie.recommend.movieItem.flip(index));
+                    }, 200)
+                })
+
+        }
+    }
+
     mapStateToProps = (state, ownProps) => {
         return {
             showingMovieDataSource: this.getShowingMovies(state),
-            isLoading: state.movie.recommend.isLoading
+            isLoading: state.movie.recommend.isLoading,
+            movieItemStates: state.movie.recommend.movieItemStates
         }
     }
 
@@ -42,7 +49,8 @@ export default class movieShowingContainer {
         return {
             onComponentDidMount: () => dispatch(this.getRecommendMovies()),
             onRefresh: () => dispatch(this.getRecommendMovies()),
-            onLoadMore: () => dispatch(this.getRecommendMovies())
+            onLoadMore: () => dispatch(this.getRecommendMovies()),
+            onMovieItemFlipped: (index) => dispatch(this.changeMovieItemFlip(index))
         }
     }
 }

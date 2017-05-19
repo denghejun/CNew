@@ -8,7 +8,7 @@ export default handleActions({
                 recommend: {
                     isLoading: true,
                     hasError: false,
-                    data: undefined
+                    movies: undefined
                 }
             }
         }
@@ -19,7 +19,8 @@ export default handleActions({
                 recommend: {
                     isLoading: false,
                     hasError: false,
-                    data: action.payload
+                    movies: action.payload.result.data[0].data,
+                    movieItemStates: new Object()
                 }
             }
         }
@@ -30,10 +31,19 @@ export default handleActions({
                 recommend: {
                     isLoading: false,
                     hasError: true,
-                    data: undefined
+                    movies: undefined
                 }
             }
         }
+    },
+    [actionCreators.movie.recommend.movieItem.flip]: (state, action) => {
+        const itemStates = state.recommend.movieItemStates !== undefined ? state.recommend.movieItemStates : new Object();
+        itemStates[action.payload] = !itemStates[action.payload];
+        return Object.assign({}, state, ...{
+            recommend: {
+                movieItemStates: itemStates
+            }
+        })
     },
     [actionCreators.movie.search.fetch.start]: (state, action) => {
 
@@ -49,7 +59,8 @@ export default handleActions({
         recommend: {
             isLoading: false,
             hasError: false,
-            data: undefined
+            movies: undefined,
+            movieItemStates: new Object()
         },
         search: {
             isLoading: false,
