@@ -1,4 +1,5 @@
 import Config from 'react-native-config'
+import RNFetchBlob from 'react-native-fetch-blob'
 
 export default class JuheApiService {
     constructor(apiURI) {
@@ -17,10 +18,6 @@ export default class JuheApiService {
             })
         }
 
-        return fetch(uri, {
-            method: 'GET'
-        }).then(response => {
-            return response.json()
-        })
+        return RNFetchBlob.fetch('get', encodeURI(uri)).then(response => response.json());
     }
 }

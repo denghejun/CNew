@@ -1,45 +1,40 @@
 import { handleActions } from 'redux-actions'
 import actionCreators from '../actions/_index'
+import merge from 'merge/merge'
 
 export default handleActions({
     [actionCreators.movie.recommend.fetch.start]: (state, action) => {
-        return {
-            ...state, ...{
-                recommend: {
-                    isLoading: true,
-                    hasError: false,
-                    movies: undefined
-                }
+        return merge.recursive(true, state, {
+            recommend: {
+                isLoading: true,
+                hasError: false,
+                movies: undefined
             }
-        }
+        })
     },
     [actionCreators.movie.recommend.fetch.success]: (state, action) => {
-        return {
-            ...state, ...{
-                recommend: {
-                    isLoading: false,
-                    hasError: false,
-                    movies: action.payload.result.data[0].data,
-                    movieItemStates: new Object()
-                }
+        return merge.recursive(true, state, {
+            recommend: {
+                isLoading: false,
+                hasError: false,
+                movies: action.payload.result.data[0].data,
+                movieItemStates: new Object()
             }
-        }
+        })
     },
     [actionCreators.movie.recommend.fetch.failed]: (state, action) => {
-        return {
-            ...state, ...{
-                recommend: {
-                    isLoading: false,
-                    hasError: true,
-                    movies: undefined
-                }
+        return merge.recursive(true, state, {
+            recommend: {
+                isLoading: false,
+                hasError: true,
+                movies: undefined
             }
-        }
+        })
     },
     [actionCreators.movie.recommend.movieItem.flip]: (state, action) => {
         const itemStates = state.recommend.movieItemStates !== undefined ? state.recommend.movieItemStates : new Object();
         itemStates[action.payload] = !itemStates[action.payload];
-        return Object.assign({}, state, ...{
+        return merge.recursive(true, state, {
             recommend: {
                 movieItemStates: itemStates
             }

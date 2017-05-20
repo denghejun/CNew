@@ -13,10 +13,10 @@ export default class MovieRecommendService extends JuheApiService {
     static Cache = {
         getRecommendMovies: (params) => {
             const key = Config.CACHE_KEY_PREFIX_MOVIE_RECOMMEND + params.city;
-            const refreshCache = (key, params) => {
-                return MovieRecommendService.Default.getRecommendMovies(params).then(response => {
+            const refreshCache = (k, p) => {
+                return MovieRecommendService.Default.getRecommendMovies(p).then(response => {
                     let expireTime = Number.parseInt(Config.CACHE_NORMAL_EXPIRE_TIME);
-                    Cache.set(key, response, expireTime);
+                    Cache.set(k, response, expireTime);
                     return response;
                 })
             }
@@ -35,6 +35,7 @@ export default class MovieRecommendService extends JuheApiService {
     }
 
     getRecommendMovies(params = {}) {
+
         let options = { dtype: 'json', city: undefined };
         return this.get({ ...options, ...params }).then(response => {
             if (response === undefined || response.error_code !== 0) {

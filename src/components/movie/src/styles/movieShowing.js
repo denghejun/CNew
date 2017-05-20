@@ -4,7 +4,7 @@ import { width, height, totalSize } from 'react-native-dimension'
 export default StyleSheet.create({
     body: {
         flex: 1,
-        paddingTop: 60
+        paddingTop: 60,
     },
     flipCard: {
         height: height(36),
