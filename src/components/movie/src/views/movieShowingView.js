@@ -29,19 +29,31 @@ export default class MovieShowingView extends React.Component {
     renderRow = (rowData, sectionID, rowID) => {
         const movieItemImageUrl = rowData.iconaddress.substring(0, rowData.iconaddress.indexOf('?'));
         const movieItemFlipFlag = this.props.movieItemStates[Number.parseInt(rowID)];
-        const movieItemFlipFrictions = movieItemFlipFlag ? [30, 6] : [6, 30];
+        const movieItemFlipFrictions = movieItemFlipFlag ? [45, 10] : [10, 45];
 
         return (
             <View style={Styles.showingMovie.thumbnail}>
-                <View>
+                <View style={Styles.common.container}>
                     <TouchableOpacity onPress={() => this.props.onMovieItemFlipped(rowID)}>
-                        <FlipCard friction={movieItemFlipFrictions[0]} clickable={false} flip={movieItemFlipFlag} style={Styles.showingMovie.flipCard}>
+                        <FlipCard flipVertical={!movieItemFlipFlag} flipHorizontal={true} friction={movieItemFlipFrictions[0]} clickable={false} flip={movieItemFlipFlag} style={Styles.showingMovie.flipCard}>
                             <View>
                                 <Image source={{ uri: movieItemImageUrl }} style={Styles.showingMovie.movieItemImage} />
                             </View>
-                            <View style={Styles.showingMovie.flipCardBack}>
-                                <Text style={Styles.showingMovie.movieName}>{rowData.tvTitle}</Text>
-                                <Text style={Styles.showingMovie.storyBrief}>{rowData.story.data.storyBrief}</Text>
+                            <View >
+                                <View style={Styles.showingMovie.movieSubHeaderContainer}>
+                                    <Text style={Styles.showingMovie.movieSubHeader}>{rowData.director.showname}</Text>
+                                </View>
+                                <Text style={Styles.showingMovie.movieSubText}>{rowData.director.data[1].name}</Text>
+
+                                <View style={Styles.showingMovie.movieSubHeaderContainer}>
+                                    <Text style={Styles.showingMovie.movieSubHeader}>{rowData.star.showname}</Text>
+                                </View>
+                                {
+                                    Object.keys(rowData.star.data).filter(o => rowData.star.data[o].name !== undefined).map(k => {
+                                        return (<Text key={k} style={Styles.showingMovie.movieSubText}>{rowData.star.data[k].name}</Text>
+                                        )
+                                    })
+                                }
                             </View>
                         </FlipCard>
                     </TouchableOpacity>
@@ -50,14 +62,21 @@ export default class MovieShowingView extends React.Component {
 
                 <View style={Styles.common.container}>
                     <TouchableOpacity onPress={() => this.props.onMovieItemFlipped(rowID)}>
-                        <FlipCard friction={movieItemFlipFrictions[1]} clickable={false} flip={!movieItemFlipFlag} style={Styles.showingMovie.flipCard}>
+                        <FlipCard flipVertical={!movieItemFlipFlag} flipHorizontal={movieItemFlipFlag}  friction={movieItemFlipFrictions[1]} clickable={false} flip={!movieItemFlipFlag} style={Styles.showingMovie.flipCard}>
                             <View>
                                 <Image source={{ uri: movieItemImageUrl }} style={Styles.showingMovie.movieItemImage} />
                             </View>
-                            <View style={Styles.showingMovie.flipCardBack}>
-                                <Text>{rowData.subHead}</Text>
-                                <Text>{rowData.playDate.showname}</Text>
-                                <Text>{rowData.playDate.data}</Text>
+                            <View >
+                                <View style={Styles.showingMovie.movieSubHeaderContainer}>
+                                    <Text style={Styles.showingMovie.movieSubHeader}>{rowData.tvTitle}</Text>
+                                </View>
+                                <Text style={Styles.showingMovie.movieSubText}>{rowData.story.data.storyBrief}</Text>
+
+                                <View style={Styles.showingMovie.movieSubHeaderContainer}>
+                                    <Text style={Styles.showingMovie.movieSubHeader}>{rowData.playDate.showname}</Text>
+                                </View>
+                                <Text style={Styles.showingMovie.movieSubText}>{rowData.playDate.data}</Text>
+                                <Text style={Styles.showingMovie.movieSubText}>{rowData.subHead}</Text>
                             </View>
                         </FlipCard>
                     </TouchableOpacity>
@@ -67,22 +86,34 @@ export default class MovieShowingView extends React.Component {
     }
 
     render() {
-        return (
-            <View style={Styles.showingMovie.body}>
-                <ListView
-                    dataSource={this.props.showingMovieDataSource}
-                    renderRow={this.renderRow}
-                    refreshControl={
-                        <RefreshControl
-                            refreshing={this.props.isLoading}
-                            onRefresh={this.props.onRefresh}
-                            tintColor='#ccc'
-                            title='loading...'
-                            titleColor='#ccc'
-                        />
-                    }
-                />
-            </View>
-        )
+        if (this.props.hasError) {
+            return (
+                <View style={Styles.showingMovie.body}>
+                    <View style={Styles.showingMovie.errorContainer}>
+                        <Image style={Styles.showingMovie.errorImage} source={require('../assets/image/icon_movie_error_x64.png')} />
+                        <Text style={Styles.showingMovie.errorText}>Ah! something goes wrong.</Text>
+                    </View>
+                </View>
+            )
+        }
+        else {
+            return (
+                <View style={Styles.showingMovie.body}>
+                    <ListView
+                        dataSource={this.props.showingMovieDataSource}
+                        renderRow={this.renderRow}
+                        refreshControl={
+                            <RefreshControl
+                                refreshing={this.props.isLoading}
+                                onRefresh={this.props.onRefresh}
+                                tintColor='#ccc'
+                                title='loading...'
+                                titleColor='#ccc'
+                            />
+                        }
+                    />
+                </View>
+            )
+        }
     }
 }

@@ -2,6 +2,7 @@ import JuheApiService from '../../core/juheApiService'
 import Config from 'react-native-config'
 import Cache from 'react-native-cache-store'
 import mockedRecommendMovies from '../mock/recommendMovieData'
+import merge from 'merge/merge'
 
 export default class MovieRecommendService extends JuheApiService {
     constructor() {
@@ -23,8 +24,6 @@ export default class MovieRecommendService extends JuheApiService {
 
             return Cache.get(key).then(cache => {
                 return cache || refreshCache(key, params);
-            }).catch(cache => {
-                return cache || refreshCache(key, params);
             });
         },
         Mock: {
@@ -35,11 +34,10 @@ export default class MovieRecommendService extends JuheApiService {
     }
 
     getRecommendMovies(params = {}) {
-
-        let options = { dtype: 'json', city: undefined };
-        return this.get({ ...options, ...params }).then(response => {
+        const options = merge.recursive(true, { dtype: 'json', city: undefined }, params)
+        return this.get(options).then(response => {
             if (response === undefined || response.error_code !== 0) {
-                throw 'Get movies failed!'
+                return Promise.reject(response)
             }
             else {
                 return response;

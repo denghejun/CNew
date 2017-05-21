@@ -41,6 +41,7 @@ export default class movieShowingContainer {
         return {
             showingMovieDataSource: this.getShowingMovies(state),
             isLoading: state.movie.recommend.isLoading,
+            hasError: state.movie.recommend.hasError,
             movieItemStates: state.movie.recommend.movieItemStates
         }
     }

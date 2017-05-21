@@ -7,43 +7,60 @@ export default StyleSheet.create({
         paddingTop: 60,
     },
     flipCard: {
-        height: height(36),
-        width: width(46),
-        borderColor: 'transparent'
+        height: height(40),
+        borderColor: 'aliceblue',
+        padding: 5,
+        marginLeft: 2,
+        borderWidth: 1
     },
     movieItemImage: {
-        height: height(35),
-        width: width(45)
+        height: height(38),
+        resizeMode: 'stretch'
     },
     thumbnail: {
         marginLeft: 6,
         marginRight: 6,
-        paddingTop: 5,
+        marginTop: 6,
+        paddingBottom: 3,
         flexDirection: 'row',
         borderBottomWidth: StyleSheet.hairlineWidth,
         borderBottomColor: '#ccc',
         overflow: 'hidden',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
-    movieName:
+    movieSubHeader:
     {
         fontWeight: 'bold',
         color: 'orange',
-        fontSize: 14
+        fontSize: 14,
     },
-    storyBrief: {
+    movieSubHeaderContainer:
+    {
+        paddingTop: 10,
+        borderBottomWidth: 0.3,
+        borderColor: 'orange',
+        paddingBottom: 3,
+        backgroundColor: 'transparent'
+    },
+    movieSubText: {
         marginTop: 10,
         color: 'silver',
-        fontSize: 12
+        fontSize: 12,
+        backgroundColor: 'transparent'
     },
-    flipCardBack: {
-        paddingTop: 20,
-        paddingLeft: 5,
-        paddingRight: 5,
-        backgroundColor: 'whitesmoke',
-        borderColor: 'seashell',
-        borderWidth: 1,
-        flex: 1
+    errorImage: {
+        width: 32,
+        height: 32
+    },
+    errorContainer: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    errorText:
+    {
+        color: '#ccc',
+        fontSize: 10
     }
 })
