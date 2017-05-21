@@ -13,7 +13,7 @@ export default handleActions({
         })
     },
     [actionCreators.movie.recommend.fetch.success]: (state, action) => {
-        return merge.recursive(true, state, {
+        return merge(true, false, state, {
             recommend: {
                 isLoading: false,
                 hasError: false,

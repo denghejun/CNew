@@ -29,13 +29,12 @@ export default class MovieShowingView extends React.Component {
     renderRow = (rowData, sectionID, rowID) => {
         const movieItemImageUrl = rowData.iconaddress.substring(0, rowData.iconaddress.indexOf('?'));
         const movieItemFlipFlag = this.props.movieItemStates[Number.parseInt(rowID)];
-        const movieItemFlipFrictions = movieItemFlipFlag ? [45, 10] : [10, 45];
 
         return (
             <View style={Styles.showingMovie.thumbnail}>
                 <View style={Styles.common.container}>
                     <TouchableOpacity onPress={() => this.props.onMovieItemFlipped(rowID)}>
-                        <FlipCard flipVertical={!movieItemFlipFlag} flipHorizontal={true} friction={movieItemFlipFrictions[0]} clickable={false} flip={movieItemFlipFlag} style={Styles.showingMovie.flipCard}>
+                        <FlipCard flipHorizontal={true} friction={45} clickable={false} flip={movieItemFlipFlag} style={Styles.showingMovie.flipCard}>
                             <View>
                                 <Image source={{ uri: movieItemImageUrl }} style={Styles.showingMovie.movieItemImage} />
                             </View>
@@ -62,7 +61,7 @@ export default class MovieShowingView extends React.Component {
 
                 <View style={Styles.common.container}>
                     <TouchableOpacity onPress={() => this.props.onMovieItemFlipped(rowID)}>
-                        <FlipCard flipVertical={!movieItemFlipFlag} flipHorizontal={movieItemFlipFlag}  friction={movieItemFlipFrictions[1]} clickable={false} flip={!movieItemFlipFlag} style={Styles.showingMovie.flipCard}>
+                        <FlipCard flipVertical={!movieItemFlipFlag} flipHorizontal={movieItemFlipFlag} friction={45} clickable={false} flip={!movieItemFlipFlag} style={Styles.showingMovie.flipCard}>
                             <View>
                                 <Image source={{ uri: movieItemImageUrl }} style={Styles.showingMovie.movieItemImage} />
                             </View>
