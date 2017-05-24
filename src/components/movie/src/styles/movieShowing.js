@@ -7,14 +7,14 @@ export default StyleSheet.create({
         paddingTop: 60,
     },
     flipCard: {
-        height: height(40),
+        height: height(46),
         borderColor: 'aliceblue',
         padding: 5,
         marginLeft: 2,
         borderWidth: 1
     },
     movieItemImage: {
-        height: height(38),
+        height: height(45),
         resizeMode: 'stretch'
     },
     thumbnail: {
@@ -29,18 +29,31 @@ export default StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
-    movieSubHeader:
-    {
+    movieSubHeader: {
         fontWeight: 'bold',
         color: 'orange',
         fontSize: 14,
     },
-    movieSubHeaderContainer:
-    {
+    buyButton: {
+        fontWeight: 'bold',
+        color: 'white',
+        fontSize: 16,
+    },
+    buyButtonContainer: {
+        padding: 10,
+        height: 35,
+        overflow: 'hidden',
+        borderRadius: 4,
+        backgroundColor: 'orange',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    movieSubHeaderContainer: {
         paddingTop: 10,
+        paddingBottom: 3,
+        marginBottom: 3,
         borderBottomWidth: 0.3,
         borderColor: 'orange',
-        paddingBottom: 3,
         backgroundColor: 'transparent'
     },
     movieSubText: {
@@ -58,8 +71,7 @@ export default StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    errorText:
-    {
+    errorText: {
         color: '#ccc',
         fontSize: 10
     }

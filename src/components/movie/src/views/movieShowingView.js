@@ -3,6 +3,7 @@ import { width, height, totalSize } from 'react-native-dimension'
 import FlipCard from 'react-native-flip-card'
 import Spinner from 'react-native-spinkit'
 import * as Styles from '../styles/_index'
+import Button from 'react-native-button'
 import {
     View,
     Text,
@@ -16,7 +17,8 @@ import {
     ProgressBarAndroid,
     ActivityIndicatorIOS,
     Platform,
-    TouchableOpacity
+    TouchableOpacity,
+    processColor
 } from 'react-native'
 
 export default class MovieShowingView extends React.Component {
@@ -28,7 +30,7 @@ export default class MovieShowingView extends React.Component {
 
     renderRow = (rowData, sectionID, rowID) => {
         const movieItemImageUrl = rowData.iconaddress.substring(0, rowData.iconaddress.indexOf('?'));
-        const movieItemFlipFlag = this.props.movieItemStates[Number.parseInt(rowID)];
+        const movieItemFlipFlag = this.props.movieItemStates.showing[Number.parseInt(rowID)];
 
         return (
             <View style={Styles.showingMovie.thumbnail}>
@@ -76,6 +78,15 @@ export default class MovieShowingView extends React.Component {
                                 </View>
                                 <Text style={Styles.showingMovie.movieSubText}>{rowData.playDate.data}</Text>
                                 <Text style={Styles.showingMovie.movieSubText}>{rowData.subHead}</Text>
+                                <View style={Styles.showingMovie.movieSubHeaderContainer}>
+                                    <Text style={Styles.showingMovie.movieSubHeader}>{rowData.more.data[0].name}</Text>
+                                </View>
+                                <Button
+                                    style={Styles.showingMovie.buyButton}
+                                    containerStyle={Styles.showingMovie.buyButtonContainer}
+                                    onPress={() => this.props.onBuyButtonPress(rowData.more.data[0].link)}>
+                                    {rowData.more.data[0].name}
+                                </Button>
                             </View>
                         </FlipCard>
                     </TouchableOpacity>

@@ -1,21 +1,14 @@
+import { ListView } from 'react-native'
 import actionCreators from '../actions/_index'
 import Services from '../../../../services/_index'
-import { ListView } from 'react-native'
 
-export default class MovieComingContainer {
+export default class movieComingContainer {
     getComingMovies(state) {
         const dataSource = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1.uuid !== r2.uuid
         });
 
-        if (state.movie.recommend.data !== undefined) {
-            const showingMovies = state.movie.recommend.data.result.data[0].data;
-            const hasData = showingMovies.length > 0;
-            return hasData ? dataSource.cloneWithRows(showingMovies) : dataSource;
-        }
-        else {
-            return dataSource;
-        }
+        return state.movie.recommend.movies !== undefined ? dataSource.cloneWithRows(state.movie.recommend.movies.coming) : dataSource;
     }
 
     getRecommendMovies() {
@@ -31,16 +24,34 @@ export default class MovieComingContainer {
         }
     }
 
+    changeMovieItemFlip(index) {
+        return (dispatch, getState) => {
+            Promise.resolve(this.timeId)
+                .then(timeId => clearTimeout(timeId))
+                .then(() => {
+                    this.timeId = setTimeout(() => {
+                        dispatch(actionCreators.movie.recommend.movieItem.flip({ index, type: 'coming' }));
+                    }, 200)
+                })
+
+        }
+    }
+
     mapStateToProps = (state, ownProps) => {
         return {
-            comingMovies: this.getComingMovies(state),
-            isLoading: state.movie.recommend.isLoading
+            showingMovieDataSource: this.getComingMovies(state),
+            isLoading: state.movie.recommend.isLoading,
+            hasError: state.movie.recommend.hasError,
+            movieItemStates: state.movie.recommend.movieItemStates
         }
     }
 
     mapDispatchToProps = (dispatch, ownProps) => {
         return {
             onComponentDidMount: () => dispatch(this.getRecommendMovies()),
+            onRefresh: () => dispatch(this.getRecommendMovies()),
+            onLoadMore: () => dispatch(this.getRecommendMovies()),
+            onMovieItemFlipped: (index) => dispatch(this.changeMovieItemFlip(index))
         }
     }
 }

@@ -1,6 +1,7 @@
-import { ListView } from 'react-native'
+import { ListView, processColor } from 'react-native'
 import actionCreators from '../actions/_index'
 import Services from '../../../../services/_index'
+import Browser from 'react-native-browser'
 
 export default class movieShowingContainer {
     getShowingMovies(state) {
@@ -8,7 +9,7 @@ export default class movieShowingContainer {
             rowHasChanged: (r1, r2) => r1.uuid !== r2.uuid
         });
 
-        return state.movie.recommend.movies !== undefined ? dataSource.cloneWithRows(state.movie.recommend.movies) : dataSource;
+        return state.movie.recommend.movies !== undefined ? dataSource.cloneWithRows(state.movie.recommend.movies.showing) : dataSource;
     }
 
     getRecommendMovies() {
@@ -24,13 +25,23 @@ export default class movieShowingContainer {
         }
     }
 
+
+    buyOnlineNow(url) {
+        Browser.open(url, {
+            loadingBarTintColor: processColor('orange'),
+            doneButtonTitle: 'Back',
+            buttonTintColor: processColor('orange'),
+            showUrlWhileLoading: false
+        });
+    }
+
     changeMovieItemFlip(index) {
         return (dispatch, getState) => {
             Promise.resolve(this.timeId)
                 .then(timeId => clearTimeout(timeId))
                 .then(() => {
                     this.timeId = setTimeout(() => {
-                        dispatch(actionCreators.movie.recommend.movieItem.flip(index));
+                        dispatch(actionCreators.movie.recommend.movieItem.flip({ index, type: 'showing' }));
                     }, 200)
                 })
 
@@ -51,7 +62,8 @@ export default class movieShowingContainer {
             onComponentDidMount: () => dispatch(this.getRecommendMovies()),
             onRefresh: () => dispatch(this.getRecommendMovies()),
             onLoadMore: () => dispatch(this.getRecommendMovies()),
-            onMovieItemFlipped: (index) => dispatch(this.changeMovieItemFlip(index))
+            onMovieItemFlipped: (index) => dispatch(this.changeMovieItemFlip(index)),
+            onBuyButtonPress: (url) => this.buyOnlineNow(url)
         }
     }
 }

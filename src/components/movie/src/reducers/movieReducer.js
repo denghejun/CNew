@@ -17,8 +17,14 @@ export default handleActions({
             recommend: {
                 isLoading: false,
                 hasError: false,
-                movies: action.payload.result.data[0].data,
-                movieItemStates: new Object()
+                movies: {
+                    showing: action.payload.result.data[0].data,
+                    coming: action.payload.result.data[1].data
+                },
+                movieItemStates: {
+                    showing: {},
+                    coming: {}
+                }
             }
         })
     },
@@ -32,8 +38,14 @@ export default handleActions({
         })
     },
     [actionCreators.movie.recommend.movieItem.flip]: (state, action) => {
-        const itemStates = state.recommend.movieItemStates !== undefined ? state.recommend.movieItemStates : new Object();
-        itemStates[action.payload] = !itemStates[action.payload];
+        const itemStates = state.recommend.movieItemStates !== undefined ? state.recommend.movieItemStates : { showing: {}, coming: {} };
+        if (action.payload.type === 'showing') {
+            itemStates.showing[action.payload.index] = !itemStates.showing[action.payload.index];
+        }
+        else {
+            itemStates.coming[action.payload.index] = !itemStates.coming[action.payload.index];
+        }
+
         return merge.recursive(true, state, {
             recommend: {
                 movieItemStates: itemStates
