@@ -1,0 +1,129 @@
+{
+    "reason": "查询成功",
+    "result": {
+        "title": "变形金刚",
+        "tag": "动作 \/ 科幻 \/ 惊悚",
+        "act": "希亚·拉博夫 梅根·福克斯 乔什·杜哈明 伯尼·麦克 泰瑞斯·吉布森 强·沃特 约翰·罗宾森 瑞切尔·泰勒 约翰·特托罗",
+        "year": "2007",
+        "rating": 8.1,
+        "area": "美国",
+        "dir": "迈克尔·贝",
+        "desc": "“霸天虎”的先遣部队旋风和毒蝎袭击了美军位于卡塔尔的军事基地，与此同时，路障帮助他的搭档迷乱潜入了美国总统的座机空中一号，通过电脑获悉，要想找到威震天就必须找到维特维奇家族的那副眼镜，上面有威震天关于能量块的信息扫描，而它现在的拥有者萨姆•维特维奇（希安•拉博夫饰）成为了“霸天虎”攻击的目标。\r\n萨姆是名高中生，学校里没有人相信他讲述的关于这副眼镜的历史，失望之余，萨姆把眼镜放到网上拍卖，然而从未引起买家的兴趣。这时父亲送了一辆破车给他，这辆车恰好就是“汽车人”大黄蜂的变形。大黄蜂帮助萨姆交上了漂亮的女朋友（梅甘•福克斯饰），但很快就遭遇了“霸天虎”的袭击，擎天柱带着其他“汽车人”赶到，一场机器人大战由此拉开了序幕。",
+        "cover": "http:\/\/p6.qhimg.com\/t012fb16b97e179f20e.jpg",
+        "vdo_status": "none",
+        "playlinks": {
+            "qq": "",
+            "xiankan": ""
+        },
+        "video_rec": [
+            {
+                "cover": "http:\/\/p5.qhimg.com\/t012ae3d2488155fe94.jpg",
+                "detail_url": "http:\/\/www.360kan.com\/m\/hannYUX5Q0H7Tx.html",
+                "title": "变形金刚3"
+            },
+            {
+                "cover": "http:\/\/p4.qhimg.com\/t010e620789f5731f22.jpg",
+                "detail_url": "http:\/\/www.360kan.com\/m\/gqnlaBH1Q0n6SR.html",
+                "title": "变形金刚4：绝迹重生"
+            },
+            {
+                "cover": "http:\/\/p5.qhimg.com\/d\/dy_6f265cd437c42efed87d4702a0d598e6.jpg",
+                "detail_url": "http:\/\/www.360kan.com\/m\/gqPpZUT8QXr2Sx.html",
+                "title": "变形金刚2 国语版"
+            },
+            {
+                "cover": "http:\/\/p6.qhimg.com\/d\/dy_5080390b9ee125f5d74cd568d99af1ce.jpg",
+                "detail_url": "http:\/\/www.360kan.com\/m\/gKPmZUT7QHf4SB.html",
+                "title": "变形金属"
+            }
+        ],
+        "act_s": [
+            {
+                "name": "希亚·拉博夫",
+                "url": null,
+                "image": "http:\/\/p9.qhmsg.com\/dmsmty\/120_110_100\/t01ac109c62b2e56e62.jpg"
+            },
+            {
+                "name": "梅根·福克斯",
+                "url": null,
+                "image": "http:\/\/p3.qhmsg.com\/dmsmty\/120_110_100\/t01ab55129720732889.jpg"
+            },
+            {
+                "name": "乔什·杜哈明",
+                "url": null,
+                "image": "http:\/\/p8.qhmsg.com\/dmsmty\/120_110_100\/t0168cd107226915003.jpg"
+            }
+        ]
+    },
+    "error_code": 0
+}
+
+/*
+{
+    "reason": "查询成功",
+    "result": {
+        "title": "猫和老鼠",
+        "tag": "搞笑 \/ 益智 \/ 少儿 \/ 动物",
+        "act": "汤姆 杰瑞 斯派克 莱特宁",
+        "year": "2006",
+        "rating": null,
+        "area": "美国",
+        "dir": "Tex Avery \/ Joseph Barbera",
+        "desc": "TOM是一只可爱的猫，十分喜爱恶作剧，JERRY是和TOM生活在一起的小老鼠，他们在生活中相互为伴，总是打闹。猫和老鼠是现实中的天敌，他们两个在一起总是闹出很多麻烦和笑话，美国把猫和老鼠的故事搬上电视，深受大家的喜爱。美国动画大师威廉·翰纳与瑟芬·芭芭拉共同创作了猫和老鼠，作品颠覆了传统印象中的猫和老鼠形象，妙趣横生。它的故事内容单一，总是出人意料，超乎想象。",
+        "cover": "http:\/\/p0.qhimg.com\/d\/dy_1947fb8a99c602715ece7b13e0d7b5aa.jpg",
+        "vdo_status": "play",
+        "playlinks": {
+            "imgo": "http:\/\/www.mgtv.com\/b\/294264\/3291605.html?cxid=90f0zbamf",
+            "kumi": "http:\/\/www.kumi.cn\/donghua\/57338_185.html",
+            "qq": "http:\/\/v.qq.com\/x\/page\/y00124igtuq.html?ptag=360kan.cartoon.free",
+            "tudou": "http:\/\/www.tudou.com\/albumplay\/kipDlDraPZ4\/NPdWBVHM8RQ.html?tpa=dW5pb25faWQ9MTAyMjEzXzEwMDAwMV8wMV8wMQ",
+            "youku": "http:\/\/v.youku.com\/v_show\/id_XMjk1NDM0NzE2.html?tpa=dW5pb25faWQ9MTAyMjEzXzEwMDAwOV8wMV8wMQ"
+        },
+        "video_rec": [
+            {
+                "cover": "http:\/\/p3.qhimg.com\/d\/dy_501abbb1b309698054ee40e6b81cc8b7.jpg",
+                "detail_url": "http:\/\/www.360kan.com\/ct\/PEDsbs8ZNYW3Dj.html",
+                "title": "猫和老鼠-顽皮捣蛋猫"
+            },
+            {
+                "cover": "http:\/\/j.www.haosou.com\/?u=http%3A%2F%2Fp9.qhimg.com%2Fd%2Fdy_58b4168b05e5e7da9f43ef6635f769ce.&m=53da0d&from=juhe&type=video&juid=JH3adfa467c54c397172de14d5d3b49a2f",
+                "detail_url": "http:\/\/www.360kan.com\/ct\/PE8lasOkMIzvCT.html",
+                "title": "猫和老鼠-城市乡巴鼠"
+            },
+            {
+                "cover": "http:\/\/p2.qhimg.com\/d\/dy_eac408bfa0eb1336ed4deeb6e3137364.jpg",
+                "detail_url": "http:\/\/www.360kan.com\/ct\/OULobsTZNYW2Cj.html",
+                "title": "猫和老鼠-救生猫"
+            },
+            {
+                "cover": "http:\/\/p3.qhimg.com\/d\/dy_b0a6787bbb757126687e5a55afe2c6b9.jpg",
+                "detail_url": "http:\/\/www.360kan.com\/ct\/O08qbcPbNYW3CD.html",
+                "title": "猫和老鼠-落汤猫"
+            }
+        ],
+        "act_s": [
+            {
+                "name": "汤姆",
+                "url": null,
+                "image": null
+            },
+            {
+                "name": "杰瑞",
+                "url": null,
+                "image": null
+            },
+            {
+                "name": "斯派克",
+                "url": null,
+                "image": "http:\/\/p7.qhmsg.com\/dmsmty\/120_110_100\/t01bd53b3e14c0f3ff2.jpg"
+            },
+            {
+                "name": "莱特宁",
+                "url": null,
+                "image": "http:\/\/p2.qhmsg.com\/dmsmty\/120_110_100\/t011940ca3f78c8b776.jpg"
+            }
+        ]
+    },
+    "error_code": 0
+}
+*/

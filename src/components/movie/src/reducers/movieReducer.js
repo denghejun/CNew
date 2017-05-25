@@ -53,13 +53,31 @@ export default handleActions({
         })
     },
     [actionCreators.movie.search.fetch.start]: (state, action) => {
-
+        return merge.recursive(true, state, {
+            search: {
+                isLoading: true,
+                hasError: false,
+                data: undefined
+            }
+        })
     },
     [actionCreators.movie.search.fetch.success]: (state, action) => {
-
+        return merge.recursive(true, state, {
+            search: {
+                isLoading: true,
+                hasError: false,
+                data: action.payload.result
+            }
+        })
     },
     [actionCreators.movie.search.fetch.failed]: (state, action) => {
-
+        return merge.recursive(true, state, {
+            search: {
+                isLoading: false,
+                hasError: true,
+                data: undefined
+            }
+        })
     }
 },
     {

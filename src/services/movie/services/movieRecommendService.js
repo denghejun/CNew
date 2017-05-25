@@ -28,7 +28,7 @@ export default class MovieRecommendService extends JuheApiService {
         },
         Mock: {
             getRecommendMovies: (params) => {
-                return Promise.resolve().then(() => mockedRecommendMovies);
+                return Promise.resolve(mockedRecommendMovies);
             }
         }
     }

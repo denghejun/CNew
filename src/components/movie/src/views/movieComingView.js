@@ -38,21 +38,26 @@ export default class MovieComingView extends React.Component {
                             <View>
                                 <Image source={{ uri: movieItemImageUrl }} style={Styles.showingMovie.movieItemImage} />
                             </View>
-                            <View >
-                                <View style={Styles.showingMovie.movieSubHeaderContainer}>
-                                    <Text style={Styles.showingMovie.movieSubHeader}>{rowData.director.showname}</Text>
-                                </View>
-                                <Text style={Styles.showingMovie.movieSubText}>{rowData.director.data[1].name}</Text>
+                            <View style={Styles.common.container}>
 
-                                <View style={Styles.showingMovie.movieSubHeaderContainer}>
-                                    <Text style={Styles.showingMovie.movieSubHeader}>{rowData.star.showname}</Text>
+                                <View>
+                                    <View style={Styles.showingMovie.movieSubHeaderContainer}>
+                                        <Text style={Styles.showingMovie.movieSubHeader}>{rowData.director.showname}</Text>
+                                    </View>
+                                    <Text style={Styles.showingMovie.movieSubText}>{rowData.director.data[1].name}</Text>
                                 </View>
-                                {
-                                    Object.keys(rowData.star.data).filter(o => rowData.star.data[o].name !== undefined).map(k => {
-                                        return (<Text key={k} style={Styles.showingMovie.movieSubText}>{rowData.star.data[k].name}</Text>
-                                        )
-                                    })
-                                }
+
+                                <View style={Styles.common.container}>
+                                    <View style={Styles.showingMovie.movieSubHeaderContainer}>
+                                        <Text style={Styles.showingMovie.movieSubHeader}>{rowData.star.showname}</Text>
+                                    </View>
+                                    {
+                                        Object.keys(rowData.star.data).filter(o => rowData.star.data[o].name !== undefined).map(k => {
+                                            return (<Text key={k} style={Styles.showingMovie.movieSubText}>{rowData.star.data[k].name}</Text>
+                                            )
+                                        })
+                                    }
+                                </View>
                             </View>
                         </FlipCard>
                     </TouchableOpacity>
@@ -65,18 +70,23 @@ export default class MovieComingView extends React.Component {
                             <View>
                                 <Image source={{ uri: movieItemImageUrl }} style={Styles.showingMovie.movieItemImage} />
                             </View>
-                            <View >
-                                <View style={Styles.showingMovie.movieSubHeaderContainer}>
-                                    <Text style={Styles.showingMovie.movieSubHeader}>{rowData.tvTitle}</Text>
+                            <View style={Styles.common.container}>
+                                <View>
+                                    <View style={Styles.showingMovie.movieSubHeaderContainer}>
+                                        <Text style={Styles.showingMovie.movieSubHeader}>{rowData.tvTitle}</Text>
+                                    </View>
+                                    <Text style={Styles.showingMovie.movieSubText}>{rowData.story.data.storyBrief}</Text>
                                 </View>
-                                <Text style={Styles.showingMovie.movieSubText}>{rowData.story.data.storyBrief}</Text>
 
-                                <View style={Styles.showingMovie.movieSubHeaderContainer}>
-                                    <Text style={Styles.showingMovie.movieSubHeader}>{rowData.playDate.showname}</Text>
+                                <View style={Styles.common.container}>
+                                    <View style={Styles.showingMovie.movieSubHeaderContainer}>
+                                        <Text style={Styles.showingMovie.movieSubHeader}>{rowData.playDate.showname}</Text>
+                                    </View>
+                                    <Text style={Styles.showingMovie.movieSubText}>{rowData.playDate.data}</Text>
+                                    <Text style={Styles.showingMovie.movieSubText}>{rowData.subHead}</Text>
                                 </View>
-                                <Text style={Styles.showingMovie.movieSubText}>{rowData.playDate.data}</Text>
-                                <Text style={Styles.showingMovie.movieSubText}>{rowData.subHead}</Text>
                             </View>
+
                         </FlipCard>
                     </TouchableOpacity>
                 </View>

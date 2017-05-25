@@ -7,14 +7,14 @@ export default StyleSheet.create({
         paddingTop: 60,
     },
     flipCard: {
-        height: height(46),
+        height: 265,
         borderColor: 'aliceblue',
         padding: 5,
         marginLeft: 2,
         borderWidth: 1
     },
     movieItemImage: {
-        height: height(45),
+        height: 255,
         resizeMode: 'stretch'
     },
     thumbnail: {
