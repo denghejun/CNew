@@ -33,7 +33,8 @@ export default handleActions({
             recommend: {
                 isLoading: false,
                 hasError: true,
-                movies: undefined
+                movies: undefined,
+                errorMessage: action.payload.reason
             }
         })
     },
@@ -55,8 +56,8 @@ export default handleActions({
     [actionCreators.movie.search.fetch.start]: (state, action) => {
         return merge.recursive(true, state, {
             search: {
+                errorMessage: undefined,
                 isLoading: true,
-                hasError: false,
                 data: undefined
             }
         })
@@ -66,6 +67,7 @@ export default handleActions({
             search: {
                 isLoading: true,
                 hasError: false,
+                errorMessage: undefined,
                 data: action.payload.result
             }
         })
@@ -75,6 +77,7 @@ export default handleActions({
             search: {
                 isLoading: false,
                 hasError: true,
+                errorMessage: action.payload.reason,
                 data: undefined
             }
         })
@@ -85,11 +88,13 @@ export default handleActions({
             isLoading: false,
             hasError: false,
             movies: undefined,
+            errorMessage: undefined,
             movieItemStates: new Object()
         },
         search: {
             isLoading: false,
             hasError: false,
+            errorMessage: undefined,
             data: undefined
         }
     })

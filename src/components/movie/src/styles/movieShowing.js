@@ -2,20 +2,19 @@ import { StyleSheet } from 'react-native'
 import { width, height, totalSize } from 'react-native-dimension'
 
 export default StyleSheet.create({
-    body: {
-        flex: 1,
-        paddingTop: 60,
-    },
     flipCard: {
         height: 265,
         borderColor: 'aliceblue',
-        padding: 5,
+        padding: 2,
         marginLeft: 2,
         borderWidth: 1
     },
     movieItemImage: {
         height: 255,
-        resizeMode: 'stretch'
+        resizeMode: 'stretch',
+        borderRadius: 4,
+        borderWidth: 0.2,
+        borderColor: 'orange',
     },
     thumbnail: {
         marginLeft: 6,

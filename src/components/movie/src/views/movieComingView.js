@@ -3,6 +3,7 @@ import { width, height, totalSize } from 'react-native-dimension'
 import FlipCard from 'react-native-flip-card'
 import Spinner from 'react-native-spinkit'
 import * as Styles from '../styles/_index'
+import MovieErrorView from './movieErrorView'
 import {
     View,
     Text,
@@ -97,17 +98,14 @@ export default class MovieComingView extends React.Component {
     render() {
         if (this.props.hasError) {
             return (
-                <View style={Styles.showingMovie.body}>
-                    <View style={Styles.showingMovie.errorContainer}>
-                        <Image style={Styles.showingMovie.errorImage} source={require('../assets/image/icon_movie_error_x64.png')} />
-                        <Text style={Styles.showingMovie.errorText}>Ah! something goes wrong.</Text>
-                    </View>
+                <View style={Styles.common.body}>
+                    <MovieErrorView errorMessage={this.props.errorMessage} />
                 </View>
             )
         }
         else {
             return (
-                <View style={Styles.showingMovie.body}>
+                <View style={Styles.common.body}>
                     <ListView
                         dataSource={this.props.showingMovieDataSource}
                         renderRow={this.renderRow}

@@ -1,11 +1,12 @@
 import Services from '../../../../services/_index'
 import actionCreators from '../actions/_index'
+import { width, height, totalSize } from 'react-native-dimension'
 
 export default class movieSearchContainer {
     search(name) {
         return (dispatch, getState) => {
             dispatch(actionCreators.movie.search.fetch.start());
-            return Services.MovieService.MovieSearchService.Cache.search({ q: name }).then(response => {
+            return Services.MovieService.MovieSearchService.Cache.Mock.search({ q: name }).then(response => {
                 dispatch(actionCreators.movie.search.fetch.success(response));
             }).catch(e => {
                 dispatch(actionCreators.movie.search.fetch.failed(e));
@@ -15,7 +16,9 @@ export default class movieSearchContainer {
 
     mapStateToProps = (state, ownProps) => {
         return {
-            result: state.movie.search.data
+            result: state.movie.search.data,
+            hasError: state.movie.search.hasError,
+            errorMessage: state.movie.search.errorMessage,
         }
     }
 

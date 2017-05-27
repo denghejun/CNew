@@ -1,17 +1,32 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
+import * as Styles from '../styles/_index'
+import { Jiro, Isao, Hoshi } from 'react-native-textinput-effects'
+import { width, height, totalSize } from 'react-native-dimension'
+import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view'
+import Modal from 'react-native-modalbox'
+import * as Animatable from 'react-native-animatable'
+import MovieSearchResultView from './movieSearchResultView'
+import MoviewErrorView from './movieErrorView'
 
 export default class MovieSearchView extends React.Component {
-    componentDidMount() {
-        if (this.props.onSearch !== undefined) {
-            this.props.onSearch('猫和老鼠');
-        }
-    }
-
     render() {
+        const { hasError } = this.props;
         return (
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-                <Text>{this.props.result === undefined ? 'undefined' : this.props.result.title}</Text>
+            <View style={Styles.common.body}>
+                <Jiro
+                    label={'今天我想看？'}
+                    labelStyle={Styles.searchMovie.labelStyle}
+                    borderColor={'orange'}
+                    autoCapitalize='none'
+                    inputStyle={Styles.searchMovie.inputStyle}
+                    onSubmitEditing={event => this.props.onSearch(event.nativeEvent.text)} />
+                    
+                <View style={[Styles.common.container]}>
+                    {
+                        hasError ? <MoviewErrorView errorMessage={this.props.errorMessage} /> : <MovieSearchResultView {...this.props} />
+                    }
+                </View>
             </View>
         )
     }

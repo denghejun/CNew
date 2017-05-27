@@ -17,7 +17,7 @@ export default class MovieSearchService extends JuheApiService {
             const refreshCache = (k, p) => {
                 return MovieSearchService.Default.search(p).then(response => {
                     let expireTime = Number.parseInt(Config.CACHE_NORMAL_EXPIRE_TIME);
-                    Cache.set(k, expireTime);
+                    Cache.set(k, response, expireTime);
                     return response;
                 })
             }
@@ -28,7 +28,7 @@ export default class MovieSearchService extends JuheApiService {
         },
         Mock: {
             search: params => {
-                return Promise.resolve(mockSearchMovieData);
+                return Promise.resolve(mockSearchMovieData[Number.parseInt(params.q)]);
             }
         }
     }

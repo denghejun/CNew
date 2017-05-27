@@ -4,6 +4,7 @@ import FlipCard from 'react-native-flip-card'
 import Spinner from 'react-native-spinkit'
 import * as Styles from '../styles/_index'
 import Button from 'react-native-button'
+import MovieErrorView from './movieErrorView'
 import {
     View,
     Text,
@@ -90,7 +91,7 @@ export default class MovieShowingView extends React.Component {
                                     <Text style={Styles.showingMovie.movieSubText}>{rowData.subHead}</Text>
                                 </View>
 
-                                <View >
+                                <View>
                                     <View style={Styles.showingMovie.movieSubHeaderContainer}>
                                         <Text style={Styles.showingMovie.movieSubHeader}>{rowData.more.data[0].name}</Text>
                                     </View>
@@ -113,17 +114,14 @@ export default class MovieShowingView extends React.Component {
     render() {
         if (this.props.hasError) {
             return (
-                <View style={Styles.showingMovie.body}>
-                    <View style={Styles.showingMovie.errorContainer}>
-                        <Image style={Styles.showingMovie.errorImage} source={require('../assets/image/icon_movie_error_x64.png')} />
-                        <Text style={Styles.showingMovie.errorText}>Ah! something goes wrong.</Text>
-                    </View>
+                <View style={Styles.common.body}>
+                    <MovieErrorView errorMessage={this.props.errorMessage} />
                 </View>
             )
         }
         else {
             return (
-                <View style={Styles.showingMovie.body}>
+                <View style={Styles.common.body}>
                     <ListView
                         dataSource={this.props.showingMovieDataSource}
                         renderRow={this.renderRow}
