@@ -13,7 +13,9 @@ export default StyleSheet.create({
     },
     inputStyle: {
         color: 'white',
-        fontWeight: 'normal'
+        fontWeight: 'normal',
+        textAlign: 'center',
+        left: 0
     },
     movieItemImage: {
         flex: 1,
@@ -41,5 +43,12 @@ export default StyleSheet.create({
     },
     movieSearchResultModal: {
         overflow: 'hidden'
+    },
+    movieHeaderV_1: {
+        flex: 1,
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        paddingHorizontal: 20,
+        paddingVertical: 24
     }
 })

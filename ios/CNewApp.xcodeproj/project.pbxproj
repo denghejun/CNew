@@ -5,6 +5,7 @@
 	};
 	objectVersion = 46;
 	objects = {
+
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -41,7 +42,6 @@
 		F475D51E1EC9E86E005D65F3 /* libRNSpinkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F475D51C1EC9E7A3005D65F3 /* libRNSpinkit.a */; };
 		F475D5251EC9F7AB005D65F3 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F475D5241EC9F783005D65F3 /* libART.a */; };
 		F4945DBD1ED5C9FE00E798A5 /* libRCTBrowser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F4945DBA1ED5C95E00E798A5 /* libRCTBrowser.a */; };
-		C0C9DE45BC344CAFA0B43A2F /* libRCTImageResizer.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 674DE99A05C3414490A2A632 /* libRCTImageResizer.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -319,8 +319,6 @@
 		F475D4FC1EC9E7A3005D65F3 /* RNSpinkit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNSpinkit.xcodeproj; path = "../node_modules/react-native-spinkit/ios/RNSpinkit.xcodeproj"; sourceTree = "<group>"; };
 		F475D51F1EC9F783005D65F3 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		F4945DB41ED5C95E00E798A5 /* RCTBrowser.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTBrowser.xcodeproj; path = "../node_modules/react-native-browser/RCTBrowser.xcodeproj"; sourceTree = "<group>"; };
-		49774EEF3F47476697C2BD77 /* RCTImageResizer.xcodeproj */ = {isa = PBXFileReference; name = "RCTImageResizer.xcodeproj"; path = "../node_modules/react-native-image-resizer/ios/RCTImageResizer.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		674DE99A05C3414490A2A632 /* libRCTImageResizer.a */ = {isa = PBXFileReference; name = "libRCTImageResizer.a"; path = "libRCTImageResizer.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -353,7 +351,6 @@
 				A7378BD7269F4B06818D17ED /* libRCTVideo.a in Frameworks */,
 				9DC21A88E68D4C518D5E2734 /* libReactNativeConfig.a in Frameworks */,
 				DD87CE81D810454B8D42D439 /* libRNFetchBlob.a in Frameworks */,
-				C0C9DE45BC344CAFA0B43A2F /* libRCTImageResizer.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,7 +523,6 @@
 				16F2F74380B74723B08B88E8 /* RCTVideo.xcodeproj */,
 				8571CF98947540B497F0273F /* RNFetchBlob.xcodeproj */,
 				BEEA586DFF31414285AE3FB0 /* ReactNativeConfig.xcodeproj */,
-				49774EEF3F47476697C2BD77 /* RCTImageResizer.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
