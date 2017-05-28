@@ -1,7 +1,7 @@
-import { ListView, processColor } from 'react-native'
+import { ListView } from 'react-native'
 import actionCreators from '../actions/_index'
 import Services from '../../../../services/_index'
-import Browser from 'react-native-browser'
+import * as Utility from '../../../utility/_index'
 
 export default class movieShowingContainer {
     getShowingMovies(state) {
@@ -23,16 +23,6 @@ export default class movieShowingContainer {
                     dispatch(actionCreators.movie.recommend.fetch.failed(error))
                 })
         }
-    }
-
-
-    buyOnlineNow(url) {
-        Browser.open(url, {
-            loadingBarTintColor: processColor('orange'),
-            doneButtonTitle: 'Back',
-            buttonTintColor: processColor('orange'),
-            showUrlWhileLoading: false
-        });
     }
 
     changeMovieItemFlip(index) {
@@ -64,7 +54,7 @@ export default class movieShowingContainer {
             onRefresh: () => dispatch(this.getRecommendMovies()),
             onLoadMore: () => dispatch(this.getRecommendMovies()),
             onMovieItemFlipped: (index) => dispatch(this.changeMovieItemFlip(index)),
-            onBuyButtonPress: (url) => this.buyOnlineNow(url)
+            onBuyButtonPress: (url) => Utility.Browser.open(url)
         }
     }
 }

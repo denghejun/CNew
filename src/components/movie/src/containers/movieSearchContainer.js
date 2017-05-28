@@ -1,6 +1,7 @@
 import Services from '../../../../services/_index'
 import actionCreators from '../actions/_index'
 import { width, height, totalSize } from 'react-native-dimension'
+import Utility, * as Utilities from '../../../utility/_index'
 
 export default class movieSearchContainer {
     search(name) {
@@ -14,6 +15,24 @@ export default class movieSearchContainer {
         }
     }
 
+    openMoviePlayLink(links) {
+        if (!Utility.isEmpty(links)) {
+            const keys = Object.keys(links);
+            const { youku, tudou, qq, kumi, imgo } = links;
+            const priorityLinks = [youku, tudou, qq, kumi, imgo]
+            const firstPlaylink = priorityLinks.find(l => !Utility.isEmpty(l)) || keys.find(k => !Utility.isEmpty(links[k]));
+            if (!Utility.isEmpty(firstPlaylink)) {
+                Utilities.Browser.open(firstPlaylink);
+            }
+            else {
+                alert('No movie source found.');
+            }
+        }
+        else {
+            alert('No movie source found.');
+        }
+    }
+
     mapStateToProps = (state, ownProps) => {
         return {
             result: state.movie.search.data,
@@ -24,7 +43,8 @@ export default class movieSearchContainer {
 
     mapDispatchToProps = (dispatch, ownProps) => {
         return {
-            onSearch: name => dispatch(this.search(name))
+            onSearch: name => dispatch(this.search(name)),
+            onMoviePlayPress: links => this.openMoviePlayLink(links)
         }
     }
 }

@@ -23,99 +23,137 @@ export default class MovieSearchResultView extends React.Component {
     }
 
     render() {
-        return (
-            this.props.result === undefined || this.props.isLoading ?
-                (
-                    <View style={[Styles.common.centerContainer]}>
-                        <Text style={Styles.showingMovie.errorText}>{this.props.result === undefined ? 'feel free to search ...' : this.props.result.title}</Text>
+        const { result, isLoading, hasError } = this.props;
+        const isInit = result === undefined || isLoading;
+
+        if (isInit) {
+            const initFriendlyText = 'feel free to search ...';
+            return (
+                <View style={[Styles.common.centerContainer]}>
+                    <Text style={Styles.showingMovie.errorText}>
+                        {initFriendlyText}
+                    </Text>
+                </View>
+            )
+        }
+        else {
+            const { onMoviePlayPress, result: { cover, title, desc, tag, year, rating, area, dir, act, playlinks } } = this.props;
+            const shouldOpenSearchResultModal = !hasError && !isLoading;
+            const movieFormatedName = title + ' (' + area + ',' + year + ')';
+
+            return (
+                <Modal
+                    style={Styles.searchMovie.movieSearchResultModal}
+                    swipeToClose={false}
+                    isOpen={shouldOpenSearchResultModal}>
+                    <View style={[Styles.common.container]}>
+                        <HeaderImageScrollView
+                            maxHeight={200}
+                            fadeOutForeground={true}
+                            maxOverlayOpacity={0.7}
+                            renderFixedForeground={() => (
+                                <Animatable.View
+                                    style={Styles.searchMovie.movieHeader}
+                                    ref={c => this.movieHeaderTextContainer = c}>
+                                    <TouchableOpacity
+                                        style={Styles.searchMovie.movieHeaderTouchContainer}
+                                        onPress={() => onMoviePlayPress(playlinks)}>
+                                        <Image
+                                            style={Styles.searchMovie.movieHeaderPlayIcon}
+                                            source={require('../assets/image/icon_movie_play_x64.png')}
+                                        />
+
+                                        <Text style={[Styles.searchMovie.movieHeaderText]}>
+                                            {movieFormatedName}
+                                        </Text>
+                                    </TouchableOpacity>
+                                </Animatable.View>
+                            )}
+
+                            renderForeground={() => (
+                                <Animatable.View
+                                    style={Styles.common.centerContainer}
+                                >
+                                    <TouchableOpacity
+                                        style={Styles.searchMovie.movieHeaderTouchContainer}
+                                        onPress={() => onMoviePlayPress(playlinks)}>
+                                        <Image
+                                            style={Styles.searchMovie.movieHeaderPlayIcon}
+                                            source={require('../assets/image/icon_movie_play_x64.png')}
+                                        />
+
+                                        <Text style={[Styles.searchMovie.movieHeaderText]}>
+                                            {movieFormatedName}
+                                        </Text>
+                                    </TouchableOpacity>
+                                </Animatable.View>
+                            )}
+
+                            renderHeader={() => (
+                                <Image
+                                    style={Styles.searchMovie.movieItemImage}
+                                    source={{ uri: cover }}
+                                />
+                            )}>
+
+                            <View style={Styles.common.paddingContainer}>
+                                <TriggeringView
+                                    onDisplay={() => this.movieHeaderTextContainer.fadeOut(100)}
+                                    onBeginHidden={() => this.movieHeaderTextContainer.fadeInUp(200)}>
+                                    <View>
+                                        <View style={Styles.showingMovie.movieSubHeaderContainer}>
+                                            <Text style={Styles.showingMovie.movieSubHeader}>{title}</Text>
+                                        </View>
+                                        <Text style={Styles.showingMovie.movieSubText}>{desc}</Text>
+                                    </View>
+
+                                    <View>
+                                        <View style={Styles.showingMovie.movieSubHeaderContainer}>
+                                            <Text style={Styles.showingMovie.movieSubHeader}>类型</Text>
+                                        </View>
+                                        <Text style={Styles.showingMovie.movieSubText}>{tag}</Text>
+                                    </View>
+
+                                    <View>
+                                        <View style={Styles.showingMovie.movieSubHeaderContainer}>
+                                            <Text style={Styles.showingMovie.movieSubHeader}>上映时间</Text>
+                                        </View>
+                                        <Text style={Styles.showingMovie.movieSubText}>{year}</Text>
+                                    </View>
+
+                                    <View>
+                                        <View style={Styles.showingMovie.movieSubHeaderContainer}>
+                                            <Text style={Styles.showingMovie.movieSubHeader}>评分</Text>
+                                        </View>
+                                        <Text style={Styles.showingMovie.movieSubText}>{rating || '暂无评分'}</Text>
+                                    </View>
+
+                                    <View>
+                                        <View style={Styles.showingMovie.movieSubHeaderContainer}>
+                                            <Text style={Styles.showingMovie.movieSubHeader}>地区</Text>
+                                        </View>
+                                        <Text style={Styles.showingMovie.movieSubText}>{area}</Text>
+                                    </View>
+
+                                    <View>
+                                        <View style={Styles.showingMovie.movieSubHeaderContainer}>
+                                            <Text style={Styles.showingMovie.movieSubHeader}>导演</Text>
+                                        </View>
+                                        <Text style={Styles.showingMovie.movieSubText}>{dir}</Text>
+                                    </View>
+
+                                    <View>
+                                        <View style={Styles.showingMovie.movieSubHeaderContainer}>
+                                            <Text style={Styles.showingMovie.movieSubHeader}>演员</Text>
+                                        </View>
+                                        <Text style={Styles.showingMovie.movieSubText}>{act}</Text>
+                                    </View>
+                                </TriggeringView>
+                            </View>
+                        </HeaderImageScrollView>
                     </View>
-
-                ) : (
-                    <Modal style={{ overflow: 'hidden' }} swipeToClose={false} isOpen={!(this.props.isLoading || this.props.result.title === undefined)}>
-                        <View style={[Styles.common.container]}>
-                            <HeaderImageScrollView
-                                maxHeight={200}
-                                fadeOutForeground={true}
-                                maxOverlayOpacity={0.7}
-                                renderFixedForeground={() => (
-                                    <Animatable.View style={Styles.searchMovie.movieHeader} ref={c => this.movieHeaderTextContainer = c}>
-                                        <TouchableOpacity>
-                                            <Text style={{ backgroundColor: 'transparent', color: 'white', fontWeight: 'bold' }}>
-                                                {this.props.result.title + ' (' + this.props.result.area + ',' + this.props.result.year + ')'}
-                                            </Text>
-                                        </TouchableOpacity>
-                                    </Animatable.View>
-                                )}
-                                renderForeground={() => (
-                                    <Animatable.View style={Styles.common.centerContainer}>
-                                        <TouchableOpacity >
-                                            <Text style={{ backgroundColor: 'transparent', color: 'white', fontWeight: 'bold' }}>
-                                                {this.props.result.title + ' (' + this.props.result.area + ',' + this.props.result.year + ')'}
-                                            </Text>
-                                        </TouchableOpacity>
-                                    </Animatable.View>
-                                )}
-                                renderHeader={() => (
-                                    <Image style={Styles.searchMovie.movieItemImage} source={{ uri: this.props.result.cover }} />
-                                )}>
-                                <View style={Styles.common.paddingContainer}>
-                                    <TriggeringView
-                                        onDisplay={() => this.movieHeaderTextContainer.fadeOut(100)}
-                                        onBeginHidden={() => this.movieHeaderTextContainer.fadeInUp(200)}>
-                                        <View>
-                                            <View style={Styles.showingMovie.movieSubHeaderContainer}>
-                                                <Text style={Styles.showingMovie.movieSubHeader}>{this.props.result.title}</Text>
-                                            </View>
-                                            <Text style={Styles.showingMovie.movieSubText}>{this.props.result.desc}</Text>
-                                        </View>
-
-                                        <View>
-                                            <View style={Styles.showingMovie.movieSubHeaderContainer}>
-                                                <Text style={Styles.showingMovie.movieSubHeader}>类型</Text>
-                                            </View>
-                                            <Text style={Styles.showingMovie.movieSubText}>{this.props.result.tag}</Text>
-                                        </View>
-
-                                        <View>
-                                            <View style={Styles.showingMovie.movieSubHeaderContainer}>
-                                                <Text style={Styles.showingMovie.movieSubHeader}>上映时间</Text>
-                                            </View>
-                                            <Text style={Styles.showingMovie.movieSubText}>{this.props.result.year}</Text>
-                                        </View>
-
-                                        <View>
-                                            <View style={Styles.showingMovie.movieSubHeaderContainer}>
-                                                <Text style={Styles.showingMovie.movieSubHeader}>评分</Text>
-                                            </View>
-                                            <Text style={Styles.showingMovie.movieSubText}>{this.props.result.rating || '暂无评分'}</Text>
-                                        </View>
-
-                                        <View>
-                                            <View style={Styles.showingMovie.movieSubHeaderContainer}>
-                                                <Text style={Styles.showingMovie.movieSubHeader}>地区</Text>
-                                            </View>
-                                            <Text style={Styles.showingMovie.movieSubText}>{this.props.result.area}</Text>
-                                        </View>
-
-                                        <View>
-                                            <View style={Styles.showingMovie.movieSubHeaderContainer}>
-                                                <Text style={Styles.showingMovie.movieSubHeader}>导演</Text>
-                                            </View>
-                                            <Text style={Styles.showingMovie.movieSubText}>{this.props.result.dir}</Text>
-                                        </View>
-
-                                        <View>
-                                            <View style={Styles.showingMovie.movieSubHeaderContainer}>
-                                                <Text style={Styles.showingMovie.movieSubHeader}>演员</Text>
-                                            </View>
-                                            <Text style={Styles.showingMovie.movieSubText}>{this.props.result.act}</Text>
-                                        </View>
-                                    </TriggeringView>
-                                </View>
-                            </HeaderImageScrollView>
-                        </View>
-                    </Modal>
-                )
-        )
+                </Modal>
+            )
+        }
     }
 }

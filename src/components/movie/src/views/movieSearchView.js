@@ -11,7 +11,7 @@ import MoviewErrorView from './movieErrorView'
 
 export default class MovieSearchView extends React.Component {
     render() {
-        const { hasError } = this.props;
+        const { hasError, onSearch, errorMessage } = this.props;
         return (
             <View style={Styles.common.body}>
                 <Jiro
@@ -20,11 +20,11 @@ export default class MovieSearchView extends React.Component {
                     borderColor={'orange'}
                     autoCapitalize='none'
                     inputStyle={Styles.searchMovie.inputStyle}
-                    onSubmitEditing={event => this.props.onSearch(event.nativeEvent.text)} />
-                    
+                    onSubmitEditing={event => onSearch(event.nativeEvent.text)} />
+
                 <View style={[Styles.common.container]}>
                     {
-                        hasError ? <MoviewErrorView errorMessage={this.props.errorMessage} /> : <MovieSearchResultView {...this.props} />
+                        hasError ? <MoviewErrorView errorMessage={errorMessage} /> : <MovieSearchResultView {...this.props} />
                     }
                 </View>
             </View>

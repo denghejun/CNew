@@ -12,16 +12,34 @@ export default StyleSheet.create({
         opacity: 0.8
     },
     inputStyle: {
-        color: 'white'
+        color: 'white',
+        fontWeight: 'normal'
     },
     movieItemImage: {
         flex: 1,
-        width: null,
+        width: width(100),
         height: null,
         resizeMode: 'stretch',
     },
     movieHeader: {
         paddingTop: 20,
+        alignItems: 'center',
+    },
+    movieHeaderText: {
+        backgroundColor: 'transparent',
+        color: 'white',
+        fontWeight: 'bold'
+    },
+    movieHeaderTouchContainer: {
+        flexDirection: 'row',
         alignItems: 'center'
     },
+    movieHeaderPlayIcon: {
+        marginRight: 5,
+        width: 48,
+        height: 48
+    },
+    movieSearchResultModal: {
+        overflow: 'hidden'
+    }
 })
