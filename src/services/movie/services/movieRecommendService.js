@@ -45,4 +45,3 @@ export default class MovieRecommendService extends JuheApiService {
         })
     }
 }
-

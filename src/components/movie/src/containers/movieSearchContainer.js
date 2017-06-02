@@ -7,7 +7,7 @@ export default class movieSearchContainer {
     search(name) {
         return (dispatch, getState) => {
             dispatch(actionCreators.movie.search.fetch.start());
-            return Services.MovieService.MovieSearchService.Cache.Mock.search({ q: name }).then(response => {
+            return Services.MovieService.MovieSearchService.Cache.search({ q: name }).then(response => {
                 dispatch(actionCreators.movie.search.fetch.success(response));
             }).catch(e => {
                 dispatch(actionCreators.movie.search.fetch.failed(e));
@@ -35,6 +35,7 @@ export default class movieSearchContainer {
 
     mapStateToProps = (state, ownProps) => {
         return {
+            isLoading: state.movie.search.isLoading,
             result: state.movie.search.data,
             hasError: state.movie.search.hasError,
             errorMessage: state.movie.search.errorMessage,

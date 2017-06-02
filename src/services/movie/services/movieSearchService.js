@@ -3,6 +3,7 @@ import Config from 'react-native-config'
 import merge from 'merge/merge'
 import Cache from 'react-native-cache-store'
 import mockSearchMovieData from '../mock/searchMovieData'
+import Utility from '../../../../src/components/utility/_index'
 
 export default class MovieSearchService extends JuheApiService {
     constructor() {
@@ -28,7 +29,13 @@ export default class MovieSearchService extends JuheApiService {
         },
         Mock: {
             search: params => {
-                return Promise.resolve(mockSearchMovieData[Number.parseInt(params.q)]);
+                return Promise.resolve(mockSearchMovieData[Number.parseInt(params.q)])
+                .then(movie=>{
+                  return Utility.isEmpty(movie) ? Promise.reject('no movie found.') : movie;
+                })
+                .catch(e=>{
+                  return Promise.reject({reason:'no movie found.'})
+                });
             }
         }
     }

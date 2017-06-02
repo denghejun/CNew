@@ -8,8 +8,8 @@ export default class CNewApp extends React.Component {
         return (
             <Router>
                 <Scene key='root'>
-                    <Scene key='cnew' duration={300} component={Components.cnew} initial={true} hideNavBar={true} />
-                    <Scene key='movie' renderBackButton={() => { }} component={Components.movie} navigationBarStyle={Styles.scene.navigationBar} hideNavBar={false}>
+                    <Scene key='cnew' component={Components.cnew} initial={true} hideNavBar={true} />
+                    <Scene key='movie' duration={10} renderBackButton={() => { }} component={Components.movie} navigationBarStyle={Styles.scene.navigationBar} hideNavBar={false}>
                         <Scene key='movie_showing' title='正在上映' titleStyle={Styles.scene.title} />
                         <Scene key='movie_coming' title='即将上映' titleStyle={Styles.scene.title} />
                         <Scene key='movie_search' title='电影搜索' titleStyle={Styles.scene.title} />
@@ -19,4 +19,3 @@ export default class CNewApp extends React.Component {
         )
     }
 }
-

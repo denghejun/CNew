@@ -2,7 +2,11 @@
  * the state will be like below
  * {
  *      movie: {
- *          recommend: {
+ *          showing: {
+ *              isLoading: false,
+ *              data: {}
+ *            },
+ *          coming: {
  *              isLoading: false,
  *              data: {}
  *            },
@@ -12,13 +16,19 @@
  *            }
  *      }
  * }
- * 
+ *
  */
 import { combineReducers } from 'redux'
-import movieReducer from './movieReducer'
+import showingReducer from './showingReducer'
+import comingReducer from './comingReducer'
+import searchReducer from './searchReducer'
 
 const reducers = combineReducers({
-    movie: movieReducer,
+    movie: combineReducers({
+      showing: showingReducer,
+      coming: comingReducer,
+      search: searchReducer
+    })
 })
 
 export default reducers

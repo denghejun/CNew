@@ -6,21 +6,22 @@ import * as Utility from '../../../utility/_index'
 export default class movieShowingContainer {
     getShowingMovies(state) {
         const dataSource = new ListView.DataSource({
-            rowHasChanged: (r1, r2) => r1.uuid !== r2.uuid
+            rowHasChanged: (r1, r2) => r1 !== r2
         });
 
-        return state.movie.recommend.movies !== undefined ? dataSource.cloneWithRows(state.movie.recommend.movies.showing) : dataSource;
+        return state.movie.showing.movies !== undefined ?
+        dataSource.cloneWithRows(state.movie.showing.movies) : dataSource;
     }
 
     getRecommendMovies() {
         return (dispatch, getState) => {
-            dispatch(actionCreators.movie.recommend.fetch.start())
-            return Services.MovieService.MovieRecommendService.Cache.Mock.getRecommendMovies({ city: '成都' })
+            dispatch(actionCreators.movie.showing.fetch.start())
+            return Services.MovieService.MovieRecommendService.Cache.getRecommendMovies({ city: '成都' })
                 .then(response => {
-                    dispatch(actionCreators.movie.recommend.fetch.success(response))
+                    dispatch(actionCreators.movie.showing.fetch.success(response))
                 })
                 .catch(error => {
-                    dispatch(actionCreators.movie.recommend.fetch.failed(error))
+                    dispatch(actionCreators.movie.showing.fetch.failed(error))
                 })
         }
     }
@@ -31,7 +32,7 @@ export default class movieShowingContainer {
                 .then(timeId => clearTimeout(timeId))
                 .then(() => {
                     this.timeId = setTimeout(() => {
-                        dispatch(actionCreators.movie.recommend.movieItem.flip({ index, type: 'showing' }));
+                        dispatch(actionCreators.movie.showing.movieItem.flip({ index }));
                     }, 200)
                 })
 
@@ -41,10 +42,10 @@ export default class movieShowingContainer {
     mapStateToProps = (state, ownProps) => {
         return {
             showingMovieDataSource: this.getShowingMovies(state),
-            isLoading: state.movie.recommend.isLoading,
-            hasError: state.movie.recommend.hasError,
-            movieItemStates: state.movie.recommend.movieItemStates,
-            errorMessage: state.movie.recommend.errorMessage
+            isLoading: state.movie.showing.isLoading,
+            hasError: state.movie.showing.hasError,
+            movieItemFlipStates: state.movie.showing.movieItemFlipStates,
+            errorMessage: state.movie.showing.errorMessage
         }
     }
 
@@ -52,7 +53,6 @@ export default class movieShowingContainer {
         return {
             onComponentDidMount: () => dispatch(this.getRecommendMovies()),
             onRefresh: () => dispatch(this.getRecommendMovies()),
-            onLoadMore: () => dispatch(this.getRecommendMovies()),
             onMovieItemFlipped: (index) => dispatch(this.changeMovieItemFlip(index)),
             onBuyButtonPress: (url) => Utility.Browser.open(url)
         }

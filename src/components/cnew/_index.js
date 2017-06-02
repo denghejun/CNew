@@ -21,7 +21,7 @@ export default class CNew extends Component {
           logoImageURL={require('./src/assets/image/logo.png')}
           cnewImageURL={require('./src/assets/image/cnew.png')}
           videoURL={require('./src/assets/video/v1.mp4')}
-          navigation={this.props.navigation} >
+        >
         </this.cnewContainer>
       </Provider>
     );

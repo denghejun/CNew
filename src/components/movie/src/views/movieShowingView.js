@@ -31,7 +31,7 @@ export default class MovieShowingView extends React.Component {
 
     renderRow = (rowData, sectionID, rowID) => {
         const movieItemImageUrl = rowData.iconaddress.substring(0, rowData.iconaddress.indexOf('?'));
-        const movieItemFlipFlag = this.props.movieItemStates.showing[Number.parseInt(rowID)];
+        const movieItemFlipFlag = this.props.movieItemFlipStates[Number.parseInt(rowID)];
 
         return (
             <View style={Styles.showingMovie.thumbnail}>
@@ -112,31 +112,27 @@ export default class MovieShowingView extends React.Component {
     }
 
     render() {
-        if (this.props.hasError) {
-            return (
-                <View style={Styles.common.body}>
-                    <MovieErrorView errorMessage={this.props.errorMessage} />
-                </View>
-            )
-        }
-        else {
-            return (
-                <View style={Styles.common.body}>
-                    <ListView
-                        dataSource={this.props.showingMovieDataSource}
-                        renderRow={this.renderRow}
-                        refreshControl={
-                            <RefreshControl
-                                refreshing={this.props.isLoading}
-                                onRefresh={this.props.onRefresh}
-                                tintColor='#ccc'
-                                title='loading...'
-                                titleColor='#ccc'
-                            />
-                        }
-                    />
-                </View>
-            )
-        }
+        const { hasError, errorMessage, showingMovieDataSource, isLoading, onRefresh } = this.props;
+
+        return hasError ?
+            <View style={Styles.common.body}>
+                <MovieErrorView errorMessage={errorMessage} />
+            </View>
+         :
+            <View style={Styles.common.body}>
+                <ListView
+                    dataSource={showingMovieDataSource}
+                    renderRow={this.renderRow}
+                    refreshControl={
+                        <RefreshControl
+                            refreshing={isLoading}
+                            onRefresh={onRefresh}
+                            tintColor='#ccc'
+                            title='loading...'
+                            titleColor='#ccc'
+                        />
+                    }
+                />
+            </View>
     }
 }

@@ -1,11 +1,9 @@
 import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
-import * as Styles from '../styles/_index'
-import { Jiro, Isao, Hoshi } from 'react-native-textinput-effects'
-import { width, height, totalSize } from 'react-native-dimension'
+import * as Animatable from 'react-native-animatable'
 import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view'
 import Modal from 'react-native-modalbox'
-import * as Animatable from 'react-native-animatable'
+import * as Styles from '../styles/_index'
 
 export default class MovieSearchResultView extends React.Component {
     componentDidUpdate() {
@@ -23,11 +21,11 @@ export default class MovieSearchResultView extends React.Component {
     }
 
     render() {
-        const { result, isLoading, hasError } = this.props;
+        const { result, isLoading } = this.props;
         const isInit = result === undefined || isLoading;
 
         if (isInit) {
-            const initFriendlyText = 'feel free to search ...';
+            const initFriendlyText = 'Try searching.';
             return (
                 <View style={[Styles.common.centerContainer]}>
                     <Text style={Styles.showingMovie.errorText}>
@@ -38,14 +36,13 @@ export default class MovieSearchResultView extends React.Component {
         }
         else {
             const { onMoviePlayPress, result: { cover, title, desc, tag, year, rating, area, dir, act, playlinks } } = this.props;
-            const shouldOpenSearchResultModal = !hasError && !isLoading;
             const movieFormatedName = title + ' (' + area + ',' + year + ')';
 
             return (
                 <Modal
                     style={Styles.searchMovie.movieSearchResultModal}
                     swipeToClose={false}
-                    isOpen={shouldOpenSearchResultModal}>
+                    isOpen={!isLoading}>
                     <View style={[Styles.common.container]}>
                         <HeaderImageScrollView
                             maxHeight={200}
