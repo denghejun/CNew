@@ -100,7 +100,7 @@ export default class MovieComingView extends React.Component {
 
       return hasError ?
           <View style={Styles.common.body}>
-              <MovieErrorView errorMessage={errorMessage} />
+              <MovieErrorView message={errorMessage} isRefreshing={isLoading} />
           </View>
        :
           <View style={Styles.common.body}>

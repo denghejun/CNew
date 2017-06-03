@@ -1,9 +1,10 @@
 import React from 'react'
-import { View, Text, Image, TouchableOpacity } from 'react-native'
+import { View, Text, Image, TouchableOpacity, ActivityIndicator } from 'react-native'
 import * as Animatable from 'react-native-animatable'
 import HeaderImageScrollView, { TriggeringView } from 'react-native-image-header-scroll-view'
 import Modal from 'react-native-modalbox'
 import * as Styles from '../styles/_index'
+import Config from 'react-native-config'
 
 export default class MovieSearchResultView extends React.Component {
     componentDidUpdate() {
@@ -22,14 +23,22 @@ export default class MovieSearchResultView extends React.Component {
 
     render() {
         const { result, isLoading } = this.props;
-        const isInit = result === undefined || isLoading;
-
-        if (isInit) {
-            const initFriendlyText = 'Try searching.';
+        const isInit = result === undefined;
+        if(isLoading) {
+          return (
+              <View style={[Styles.common.centerContainer]}>
+                  <Text style={Styles.showingMovie.errorText}>
+                      {Config.TEXT_MOVIE_SEARCHING}
+                  </Text>
+                  <ActivityIndicator animating={true} />
+              </View>
+          )
+        }
+        else if (isInit) {
             return (
                 <View style={[Styles.common.centerContainer]}>
                     <Text style={Styles.showingMovie.errorText}>
-                        {initFriendlyText}
+                        {Config.TEXT_MOVIE_TRY_SEARCH}
                     </Text>
                 </View>
             )

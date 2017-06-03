@@ -7,7 +7,7 @@ import MoviewErrorView from './errorView'
 
 export default class MovieSearchView extends React.Component {
     render() {
-        const { hasError, onSearch, errorMessage } = this.props;
+        const { hasError, onSearch, errorMessage, isLoading } = this.props;
         return (
             <View style={Styles.common.body}>
                 <Jiro
@@ -20,7 +20,7 @@ export default class MovieSearchView extends React.Component {
 
                 <View style={[Styles.common.centerContainer]}>
                     {
-                        hasError ? <MoviewErrorView errorMessage={errorMessage} /> : <MovieSearchResultView {...this.props} />
+                        hasError ? <MoviewErrorView message={errorMessage} isRefreshing={isLoading} /> : <MovieSearchResultView {...this.props} />
                     }
                 </View>
             </View>
