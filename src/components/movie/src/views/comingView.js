@@ -3,8 +3,7 @@ import { width, height, totalSize } from 'react-native-dimension'
 import FlipCard from 'react-native-flip-card'
 import Spinner from 'react-native-spinkit'
 import * as Styles from '../styles/_index'
-import Button from 'react-native-button'
-import MovieErrorView from './movieErrorView'
+import MovieErrorView from './errorView'
 import {
     View,
     Text,
@@ -18,11 +17,10 @@ import {
     ProgressBarAndroid,
     ActivityIndicatorIOS,
     Platform,
-    TouchableOpacity,
-    processColor
+    TouchableOpacity
 } from 'react-native'
 
-export default class MovieShowingView extends React.Component {
+export default class MovieComingView extends React.Component {
     componentDidMount() {
         if (this.props.onComponentDidMount !== undefined) {
             this.props.onComponentDidMount();
@@ -51,7 +49,6 @@ export default class MovieShowingView extends React.Component {
                                 </View>
 
                                 <View style={Styles.common.container}>
-
                                     <View style={Styles.showingMovie.movieSubHeaderContainer}>
                                         <Text style={Styles.showingMovie.movieSubHeader}>{rowData.star.showname}</Text>
                                     </View>
@@ -62,7 +59,6 @@ export default class MovieShowingView extends React.Component {
                                         })
                                     }
                                 </View>
-
                             </View>
                         </FlipCard>
                     </TouchableOpacity>
@@ -90,20 +86,8 @@ export default class MovieShowingView extends React.Component {
                                     <Text style={Styles.showingMovie.movieSubText}>{rowData.playDate.data}</Text>
                                     <Text style={Styles.showingMovie.movieSubText}>{rowData.subHead}</Text>
                                 </View>
-
-                                <View>
-                                    <View style={Styles.showingMovie.movieSubHeaderContainer}>
-                                        <Text style={Styles.showingMovie.movieSubHeader}>{rowData.more.data[0].name}</Text>
-                                    </View>
-                                    <Button
-                                        style={Styles.showingMovie.buyButton}
-                                        containerStyle={Styles.showingMovie.buyButtonContainer}
-                                        onPress={() => this.props.onBuyButtonPress(rowData.more.data[0].link)}>
-                                        {rowData.more.data[0].name}
-                                    </Button>
-                                </View>
-
                             </View>
+
                         </FlipCard>
                     </TouchableOpacity>
                 </View>
@@ -112,27 +96,27 @@ export default class MovieShowingView extends React.Component {
     }
 
     render() {
-        const { hasError, errorMessage, showingMovieDataSource, isLoading, onRefresh } = this.props;
+      const { hasError, errorMessage, showingMovieDataSource, isLoading, onRefresh } = this.props;
 
-        return hasError ?
-            <View style={Styles.common.body}>
-                <MovieErrorView errorMessage={errorMessage} />
-            </View>
-         :
-            <View style={Styles.common.body}>
-                <ListView
-                    dataSource={showingMovieDataSource}
-                    renderRow={this.renderRow}
-                    refreshControl={
-                        <RefreshControl
-                            refreshing={isLoading}
-                            onRefresh={onRefresh}
-                            tintColor='#ccc'
-                            title='loading...'
-                            titleColor='#ccc'
-                        />
-                    }
-                />
-            </View>
+      return hasError ?
+          <View style={Styles.common.body}>
+              <MovieErrorView errorMessage={errorMessage} />
+          </View>
+       :
+          <View style={Styles.common.body}>
+              <ListView
+                  dataSource={showingMovieDataSource}
+                  renderRow={this.renderRow}
+                  refreshControl={
+                      <RefreshControl
+                          refreshing={isLoading}
+                          onRefresh={onRefresh}
+                          tintColor='#ccc'
+                          title='loading...'
+                          titleColor='#ccc'
+                      />
+                  }
+              />
+          </View>
     }
 }

@@ -2,8 +2,8 @@ import React from 'react'
 import { View, Text, Image, TouchableOpacity } from 'react-native'
 import * as Styles from '../styles/_index'
 import { Jiro } from 'react-native-textinput-effects'
-import MovieSearchResultView from './movieSearchResultView'
-import MoviewErrorView from './movieErrorView'
+import MovieSearchResultView from './searchResultView'
+import MoviewErrorView from './errorView'
 
 export default class MovieSearchView extends React.Component {
     render() {

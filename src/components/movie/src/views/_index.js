@@ -1,3 +1,3 @@
-export { default as movieShowingView } from './movieShowingView'
-export { default as movieComingView } from './movieComingView'
-export { default as movieSearchView } from './movieSearchView'
+export { default as movieShowingView } from './showingView'
+export { default as movieComingView } from './comingView'
+export { default as movieSearchView } from './searchView'
