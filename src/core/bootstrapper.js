@@ -1,6 +1,6 @@
 import { AppRegistry } from 'react-native'
 import Cache from 'react-native-cache-store'
-import CNewApp from './components/router/_index'
+import CNewApp from '../components/router/_index'
 
 export default class BootStrapper {
     static init() {
