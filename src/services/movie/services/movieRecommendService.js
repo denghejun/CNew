@@ -38,8 +38,7 @@ export default class MovieRecommendService extends JuheApiService {
         return this.get(options).then(response => {
             if (response === undefined || response.error_code !== 0) {
                 return Promise.reject({message: response.reason})
-            }
-            else {
+            } else {
                 return response;
             }
         })

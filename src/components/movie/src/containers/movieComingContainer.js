@@ -1,6 +1,8 @@
 import { ListView } from 'react-native'
 import actionCreators from '../actions/_index'
 import Services from '../../../../services/_index'
+import Utility, * as Utilities from '../../../utility/_index'
+import Cache from 'react-native-cache-store'
 
 export default class movieComingContainer {
     getComingMovies(state) {
@@ -15,13 +17,21 @@ export default class movieComingContainer {
     getRecommendMovies() {
         return (dispatch, getState) => {
             dispatch(actionCreators.movie.coming.fetch.start())
-            return Services.MovieService.MovieRecommendService.Cache.Mock.getRecommendMovies({ city: '成都' })
+
+            return Cache.get('CURRENT_CITY').then(city=>{
+              if(Utility.isEmpty(city)) {
+                dispatch(actionCreators.movie.coming.fetch.failed({message: '未能成功定位到当前城市!'}))
+                return;
+              }
+
+              return Services.MovieService.MovieRecommendService.Cache.getRecommendMovies({ city })
                 .then(response => {
                     dispatch(actionCreators.movie.coming.fetch.success(response))
                 })
                 .catch(e => {
                     dispatch(actionCreators.movie.coming.fetch.failed({message: e.message}))
                 })
+            })
         }
     }
 
