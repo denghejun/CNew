@@ -23,7 +23,7 @@ export default handleActions({
             isLoading: false,
             hasError: true,
             movies: undefined,
-            errorMessage: action.payload.reason
+            errorMessage: action.payload.message
         })
     },
     [actionCreators.movie.showing.movieItem.flip]: (state, action) => {

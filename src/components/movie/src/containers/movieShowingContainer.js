@@ -16,12 +16,12 @@ export default class movieShowingContainer {
     getRecommendMovies() {
         return (dispatch, getState) => {
             dispatch(actionCreators.movie.showing.fetch.start())
-            return Services.MovieService.MovieRecommendService.Cache.getRecommendMovies({ city: '成都' })
+            return Services.MovieService.MovieRecommendService.Cache.Mock.getRecommendMovies({ city: '成都' })
                 .then(response => {
                     dispatch(actionCreators.movie.showing.fetch.success(response))
                 })
-                .catch(error => {
-                    dispatch(actionCreators.movie.showing.fetch.failed(error))
+                .catch(e => {
+                    dispatch(actionCreators.movie.showing.fetch.failed({message: e.message}))
                 })
         }
     }

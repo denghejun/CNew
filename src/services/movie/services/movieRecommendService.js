@@ -37,7 +37,7 @@ export default class MovieRecommendService extends JuheApiService {
         const options = merge.recursive(true, { dtype: 'json', city: undefined }, params)
         return this.get(options).then(response => {
             if (response === undefined || response.error_code !== 0) {
-                return Promise.reject(response)
+                return Promise.reject({message: response.reason})
             }
             else {
                 return response;

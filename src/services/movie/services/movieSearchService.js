@@ -29,12 +29,13 @@ export default class MovieSearchService extends JuheApiService {
         },
         Mock: {
             search: params => {
+                const noMovieFoundMessage = {message: 'no movie found.'};
                 return Promise.resolve(mockSearchMovieData[Number.parseInt(params.q)])
                 .then(movie=>{
-                  return Utility.isEmpty(movie) ? Promise.reject('no movie found.') : movie;
+                  return Utility.isEmpty(movie) ? Promise.reject(noMovieFoundMessage) : movie;
                 })
                 .catch(e=>{
-                  return Promise.reject({reason:'no movie found.'})
+                  return Promise.reject(noMovieFoundMessage)
                 });
             }
         }
@@ -44,7 +45,7 @@ export default class MovieSearchService extends JuheApiService {
         const options = merge.recursive(true, { dtype: 'json', q: undefined }, params);
         return this.get(options).then(response => {
             if (response === undefined || response.error_code !== 0) {
-                return Promise.reject(response)
+                return Promise.reject({message: response.reason})
             }
             else {
                 return response;

@@ -22,7 +22,7 @@ export default handleActions({
         return merge.recursive(true, state, {
             isLoading: false,
             hasError: true,
-            errorMessage: action.payload.reason || action.payload.message,
+            errorMessage: action.payload.message,
             data: undefined
         })
     }
