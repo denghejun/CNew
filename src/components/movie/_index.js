@@ -4,12 +4,10 @@ import { Provider } from 'react-redux';
 import createStore from './src/store/_index'
 import * as Containers from './src/containers/_index'
 import { width, height, totalSize } from 'react-native-dimension'
-import { PagerTabIndicator, IndicatorViewPager, PagerTitleIndicator, PagerDotIndicator } from 'rn-viewpager';
-import { Router, Scene, Actions } from 'react-native-router-flux'
-
-const contextTypes = {
-    drawer: React.PropTypes.object,
-};
+import { IndicatorViewPager} from 'rn-viewpager';
+import { Actions } from 'react-native-router-flux'
+import TabIndicatorFactory from './src/common/tabIndicatorFactory'
+import Config from 'react-native-config'
 
 export default class MovieScreen extends React.Component {
     constructor(props) {
@@ -27,53 +25,15 @@ export default class MovieScreen extends React.Component {
     router(nav) {
         const { position } = nav;
         const { city } = this.props.getLocation();
-        const showingTitle = `正在上映(${city})`;
-        const comingTitle = `即将上映(${city})`;
-
-        switch (position) {
-            case 0:
-                Actions.movie_showing({title: showingTitle});
-                break;
-
-            case 1:
-                Actions.movie_coming({title: comingTitle});
-                break;
-
-            case 2:
-                Actions.movie_search();
-                break;
-
-            default:
-                break;
+        const showingTitle = `正在上映(${city || Config.TEXT_LOCATION_UNKNOWN})`;
+        const comingTitle = `即将上映(${city || Config.TEXT_LOCATION_UNKNOWN})`;
+        const subScenesStrategy = {
+          [0]: () => Actions.movie_showing({title: showingTitle}),
+          [1]: () => Actions.movie_coming({title: comingTitle}),
+          [2]: () => Actions.movie_search()
         }
-    }
 
-    renderTitleIndicator() {
-        return <PagerTitleIndicator titles={['正在上映', '即将上映', '电影搜索']} />;
-    }
-
-    renderDotIndicator() {
-        return <PagerDotIndicator selectedDotStyle={{ backgroundColor: 'orange', transform: [{ scale: 2 }] }} pageCount={3} />;
-    }
-
-    renderTabIndicator() {
-        let tabs = [{
-            text: '正在上映',
-            iconSource: require('./src/assets/image/icon_movie_showing_x16.png'),
-            selectedIconSource: require('./src/assets/image/icon_movie_showing_x16_selected.png'),
-        }, {
-            text: '即将上映',
-            iconSource: require('./src/assets/image/icon_movie_coming_x16.png'),
-            selectedIconSource: require('./src/assets/image/icon_movie_coming_x16_selected.png'),
-        }, {
-            text: '电影搜索',
-            iconSource: require('./src/assets/image/icon_movie_search_x16.png'),
-            selectedIconSource: require('./src/assets/image/icon_movie_search_x16_selected.png'),
-        }];
-        return <PagerTabIndicator
-            textStyle={{ fontFamily: 'Cochin', fontSize: 10 }}
-            selectedTextStyle={{ color: '#1296db', fontFamily: 'Cochin', fontSize: 10 }}
-            tabs={tabs} />;
+        subScenesStrategy[position]();
     }
 
     render() {
@@ -87,7 +47,7 @@ export default class MovieScreen extends React.Component {
                         autoPlayEnable={false}
                         autoPlayInterval={1000}
                         onPageSelected={(nav) => this.router(nav)}
-                        indicator={this.renderDotIndicator()}>
+                        indicator={TabIndicatorFactory.renderDotIndicator()}>
                         <View style={{ flex: 1 }}>
                             <this.movieShowingContainer />
                         </View>
@@ -105,5 +65,3 @@ export default class MovieScreen extends React.Component {
         );
     }
 }
-
-MovieScreen.contextTypes = contextTypes;
