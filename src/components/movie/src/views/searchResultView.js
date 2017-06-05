@@ -21,15 +21,17 @@ export default class MovieSearchResultView extends React.Component {
         }
     }
 
-    renderPlayOnlineTouchComponent(onMoviePlayPress, movieFormatedName) {
+    renderPlayOnlineTouchComponent(onMoviePlayPress, movieFormatedName, showPlayIcon = true) {
       return (
         <TouchableOpacity
             style={Styles.searchMovie.movieHeaderTouchContainer}
             onPress={onMoviePlayPress}>
-            <Image
+            {
+              showPlayIcon ?
+              <Image
                 style={Styles.searchMovie.movieHeaderPlayIcon}
-                source={require('../assets/image/icon_movie_play_x64.png')}
-            />
+                source={require('../assets/image/icon_movie_play_x64.png')}/> : null
+            }
 
             <Text style={[Styles.searchMovie.movieHeaderText]}>
                 {movieFormatedName}
@@ -74,7 +76,7 @@ export default class MovieSearchResultView extends React.Component {
                             maxHeight={200}
                             fadeOutForeground={true}
                             maxOverlayOpacity={0.7}
-                            renderFixedForeground={() => (
+                            renderTouchableFixedForeground={() => (
                                 <Animatable.View
                                     style={Styles.searchMovie.movieHeader}
                                     ref={c => this.movieHeaderTextContainer = c}>
@@ -84,7 +86,7 @@ export default class MovieSearchResultView extends React.Component {
 
                             renderForeground={() => (
                                 <Animatable.View style={Styles.common.centerContainer}>
-                                    { this.renderPlayOnlineTouchComponent(() => onMoviePlayPress(playlinks), movieFormatedName) }
+                                    { this.renderPlayOnlineTouchComponent(() => onMoviePlayPress(playlinks), movieFormatedName, false) }
                                 </Animatable.View>
                             )}
 

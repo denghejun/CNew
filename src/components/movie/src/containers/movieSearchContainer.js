@@ -9,7 +9,7 @@ export default class MovieSearchContainer {
     search(name) {
         return (dispatch, getState) => {
             dispatch(actionCreators.movie.search.fetch.start());
-            return Services.MovieService.MovieSearchService.Cache.Mock.search({ q: name }).then(response => {
+            return Services.MovieService.MovieSearchService.Cache.search({ q: name }).then(response => {
                 dispatch(actionCreators.movie.search.fetch.success(response));
             }).catch(e => {
                 dispatch(actionCreators.movie.search.fetch.failed({message: e.message}));

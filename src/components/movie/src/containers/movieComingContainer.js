@@ -19,7 +19,7 @@ export default class MovieComingContainer {
         return (dispatch, getState) => {
             dispatch(actionCreators.movie.coming.fetch.start())
             Services.LocationService.Default.getCurrentCity((city) => {
-              return Services.MovieService.MovieRecommendService.Cache.Mock.getRecommendMovies({ city })
+              return Services.MovieService.MovieRecommendService.Cache.getRecommendMovies({ city })
                 .then(response => {
                     dispatch(actionCreators.movie.coming.fetch.success(response))
                 })
