@@ -72,6 +72,8 @@ export default StyleSheet.create({
     },
     errorText: {
         color: '#ccc',
-        fontSize: 10
+        fontSize: 10,
+        width:width(60),
+        textAlign:'center'
     }
 })

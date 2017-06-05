@@ -1,13 +1,15 @@
+import { Alert } from 'react-native'
 import Services from '../../../../services/_index'
 import actionCreators from '../actions/_index'
 import { width, height, totalSize } from 'react-native-dimension'
 import Utility, * as Utilities from '../../../utility/_index'
+import Config from 'react-native-config'
 
-export default class movieSearchContainer {
+export default class MovieSearchContainer {
     search(name) {
         return (dispatch, getState) => {
             dispatch(actionCreators.movie.search.fetch.start());
-            return Services.MovieService.MovieSearchService.Cache.search({ q: name }).then(response => {
+            return Services.MovieService.MovieSearchService.Cache.Mock.search({ q: name }).then(response => {
                 dispatch(actionCreators.movie.search.fetch.success(response));
             }).catch(e => {
                 dispatch(actionCreators.movie.search.fetch.failed({message: e.message}));
@@ -25,11 +27,11 @@ export default class movieSearchContainer {
                 Utilities.Browser.open(firstPlaylink);
             }
             else {
-                alert('No movie source found.');
+                Alert.alert(Config.TEXT_NO_MOVIE_SOURCE_FOUND);
             }
         }
         else {
-            alert('No movie source found.');
+            Alert.alert(Config.TEXT_NO_MOVIE_SOURCE_FOUND);
         }
     }
 

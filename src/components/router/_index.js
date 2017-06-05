@@ -1,21 +1,20 @@
 import React from 'react'
-import { Router, Scene, Actions } from 'react-native-router-flux'
-import * as Components from '../_index'
-import * as Styles from './styles/_index'
+import { Provider } from 'react-redux'
+import createStore from './src/store/_index'
+import * as Containers from './src/containers/_index'
 
 export default class CNewApp extends React.Component {
+    constructor(props) {
+      super(props)
+      this.store = createStore();
+      this.routerContainer = Containers.RouterContainer.connect();
+    }
+
     render() {
         return (
-            <Router>
-                <Scene key='root'>
-                    <Scene key='cnew' component={Components.cnew} initial={true} hideNavBar={true} />
-                    <Scene key='movie' duration={10} renderBackButton={() => { }} component={Components.movie} navigationBarStyle={Styles.scene.navigationBar} hideNavBar={false}>
-                        <Scene key='movie_showing' title='正在上映' titleStyle={Styles.scene.title} />
-                        <Scene key='movie_coming' title='即将上映' titleStyle={Styles.scene.title} />
-                        <Scene key='movie_search' title='电影搜索' titleStyle={Styles.scene.title} />
-                    </Scene>
-                </Scene>
-            </Router>
+          <Provider store={this.store}>
+                  <this.routerContainer />
+          </Provider>
         )
     }
 }

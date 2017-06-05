@@ -13,7 +13,6 @@ export default class BootStrapper {
     }
 
     static start() {
-        Services.LocationService.Default.initCurrentCity();
         Promise.resolve().then(() => {
             return BootStrapper.init();
         }).then(() => {

@@ -11,7 +11,7 @@ export default handleActions({
         })
     },
     [actionCreators.movie.search.fetch.success]: (state, action) => {
-        return merge.recursive(true, state, {
+        return merge(true, false, state, {
             isLoading: false,
             hasError: false,
             errorMessage: undefined,

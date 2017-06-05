@@ -18,15 +18,6 @@ export default class BlinkerContainer {
         }
     }
 
-    getMusic() {
-        fetch('http://tingapi.ting.baidu.com/v1/restserver/ting?from=qianqian&version=2.1.0&method=baidu.ting.billboard.billList&format=json&type=8&offset=0&size=1')
-            .then(response => response.json())
-            .then(data => alert(JSON.stringify(data)))
-            .catch(error => {
-                alert(JSON.stringify(error))
-            });
-    }
-
     startScaleAnimation() {
         if (this.props.scaleable === true) {
             const scaleFrom = this.props.scaleFrom || 0;
@@ -112,7 +103,7 @@ export default class BlinkerContainer {
         }
     }
 
-    // container fatory 
+    // container fatory
     static connect() {
         const container = new BlinkerContainer();
         return connect(container.mapStateToProps, container.mapDispatchToProps)(Views.blinkerView);

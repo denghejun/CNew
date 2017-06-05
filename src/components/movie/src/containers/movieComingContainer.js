@@ -3,8 +3,9 @@ import actionCreators from '../actions/_index'
 import Services from '../../../../services/_index'
 import Utility, * as Utilities from '../../../utility/_index'
 import Cache from 'react-native-cache-store'
+import Config from 'react-native-config'
 
-export default class movieComingContainer {
+export default class MovieComingContainer {
     getComingMovies(state) {
         const dataSource = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1 !== r2
@@ -17,21 +18,17 @@ export default class movieComingContainer {
     getRecommendMovies() {
         return (dispatch, getState) => {
             dispatch(actionCreators.movie.coming.fetch.start())
-
-            return Cache.get('CURRENT_CITY').then(city=>{
-              if(Utility.isEmpty(city)) {
-                dispatch(actionCreators.movie.coming.fetch.failed({message: '未能成功定位到当前城市!'}))
-                return;
-              }
-
-              return Services.MovieService.MovieRecommendService.Cache.getRecommendMovies({ city })
+            Services.LocationService.Default.getCurrentCity((city) => {
+              return Services.MovieService.MovieRecommendService.Cache.Mock.getRecommendMovies({ city })
                 .then(response => {
                     dispatch(actionCreators.movie.coming.fetch.success(response))
                 })
                 .catch(e => {
                     dispatch(actionCreators.movie.coming.fetch.failed({message: e.message}))
                 })
-            })
+            }, (error) => {
+              dispatch(actionCreators.movie.coming.fetch.failed({message: error.message + '\r\n' + Config.TEXT_LOCATION_SERVICE_DENIED}));
+            });
         }
     }
 

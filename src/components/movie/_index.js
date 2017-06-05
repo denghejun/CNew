@@ -5,7 +5,7 @@ import createStore from './src/store/_index'
 import * as Containers from './src/containers/_index'
 import { width, height, totalSize } from 'react-native-dimension'
 import { PagerTabIndicator, IndicatorViewPager, PagerTitleIndicator, PagerDotIndicator } from 'rn-viewpager';
-import { Actions } from 'react-native-router-flux'
+import { Router, Scene, Actions } from 'react-native-router-flux'
 
 const contextTypes = {
     drawer: React.PropTypes.object,
@@ -26,13 +26,17 @@ export default class MovieScreen extends React.Component {
 
     router(nav) {
         const { position } = nav;
+        const { city } = this.props.getLocation();
+        const showingTitle = `正在上映(${city})`;
+        const comingTitle = `即将上映(${city})`;
+
         switch (position) {
             case 0:
-                Actions.movie_showing();
+                Actions.movie_showing({title: showingTitle});
                 break;
 
             case 1:
-                Actions.movie_coming();
+                Actions.movie_coming({title: comingTitle});
                 break;
 
             case 2:

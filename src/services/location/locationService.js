@@ -1,31 +1,32 @@
 import BaiduMapApiService from '../core/baiduMapApiService'
-import Cache from 'react-native-cache-store'
 
 export default class LocationService extends BaiduMapApiService {
 
   static Default = new LocationService()
 
   Mock = {
-    initCurrentCity: ()=>{
-      this.getCurrentCity(30.66667, 104.06667).then(response=>{
+    getCurrentCity: (success, error)=>{
+      this.getCity(30.66667, 104.06667).then(response=>{
         const { city } = response;
-        Cache.set('CURRENT_CITY', city);
+        success(city);
+      }).catch(e=>{
+        if(error) {
+          error(e);
+        }
       });
     }
   }
 
-  initCurrentCity() {
+  getCurrentCity(success, error) {
     navigator.geolocation.getCurrentPosition(
       (initialPosition) => {
         const { coords: { longitude, latitude }} = initialPosition;
-        this.getCurrentCity(latitude, longitude).then(response=>{
+        this.getCity(latitude, longitude).then(response=>{
           const { city } = response;
-          Cache.set('CURRENT_CITY', city);
+          success(city);
         });
       },
-      (error) => {
-
-      },
+      error,
       {
         enableHighAccuracy: true,
         timeout: 20000,
@@ -34,7 +35,7 @@ export default class LocationService extends BaiduMapApiService {
     );
   }
 
-  getCurrentCity(latitude, longitude) {
+  getCity(latitude, longitude) {
     return this.get({location: latitude + ',' + longitude}).then(response=>{
       if(response.status !== 0) {
           return Promise.reject({ message: response.message });
