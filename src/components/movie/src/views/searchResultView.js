@@ -21,6 +21,23 @@ export default class MovieSearchResultView extends React.Component {
         }
     }
 
+    renderPlayOnlineTouchComponent(onMoviePlayPress, movieFormatedName) {
+      return (
+        <TouchableOpacity
+            style={Styles.searchMovie.movieHeaderTouchContainer}
+            onPress={onMoviePlayPress}>
+            <Image
+                style={Styles.searchMovie.movieHeaderPlayIcon}
+                source={require('../assets/image/icon_movie_play_x64.png')}
+            />
+
+            <Text style={[Styles.searchMovie.movieHeaderText]}>
+                {movieFormatedName}
+            </Text>
+        </TouchableOpacity>
+      )
+    }
+
     render() {
         const { result, isLoading } = this.props;
         const isInit = result === undefined;
@@ -61,37 +78,13 @@ export default class MovieSearchResultView extends React.Component {
                                 <Animatable.View
                                     style={Styles.searchMovie.movieHeader}
                                     ref={c => this.movieHeaderTextContainer = c}>
-                                    <TouchableOpacity
-                                        style={Styles.searchMovie.movieHeaderTouchContainer}
-                                        onPress={() => onMoviePlayPress(playlinks)}>
-                                        <Image
-                                            style={Styles.searchMovie.movieHeaderPlayIcon}
-                                            source={require('../assets/image/icon_movie_play_x64.png')}
-                                        />
-
-                                        <Text style={[Styles.searchMovie.movieHeaderText]}>
-                                            {movieFormatedName}
-                                        </Text>
-                                    </TouchableOpacity>
+                                    { this.renderPlayOnlineTouchComponent(() => onMoviePlayPress(playlinks), movieFormatedName) }
                                 </Animatable.View>
                             )}
 
                             renderForeground={() => (
-                                <Animatable.View
-                                    style={Styles.common.centerContainer}
-                                >
-                                    <TouchableOpacity
-                                        style={Styles.searchMovie.movieHeaderTouchContainer}
-                                        onPress={() => onMoviePlayPress(playlinks)}>
-                                        <Image
-                                            style={Styles.searchMovie.movieHeaderPlayIcon}
-                                            source={require('../assets/image/icon_movie_play_x64.png')}
-                                        />
-
-                                        <Text style={[Styles.searchMovie.movieHeaderText]}>
-                                            {movieFormatedName}
-                                        </Text>
-                                    </TouchableOpacity>
+                                <Animatable.View style={Styles.common.centerContainer}>
+                                    { this.renderPlayOnlineTouchComponent(() => onMoviePlayPress(playlinks), movieFormatedName) }
                                 </Animatable.View>
                             )}
 
