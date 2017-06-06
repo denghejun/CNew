@@ -16,5 +16,10 @@ export default StyleSheet.create({
     paddingContainer: {
         flex: 1,
         padding: 6,
+    },
+    spaceBetweenContainer:
+    {
+      flex:1,
+      justifyContent: 'space-between'
     }
 })

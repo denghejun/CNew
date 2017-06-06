@@ -75,7 +75,7 @@ export default class MovieShowingView extends React.Component {
                             <View>
                                 <Image source={{ uri: movieItemImageUrl }} style={Styles.showingMovie.movieItemImage} />
                             </View>
-                            <View style={Styles.common.container}>
+                            <View style={Styles.common.spaceBetweenContainer}>
                                 <View>
                                     <View style={Styles.showingMovie.movieSubHeaderContainer}>
                                         <Text style={Styles.showingMovie.movieSubHeader}>{rowData.tvTitle}</Text>
@@ -83,7 +83,7 @@ export default class MovieShowingView extends React.Component {
                                     <Text style={Styles.showingMovie.movieSubText}>{rowData.story.data.storyBrief}</Text>
                                 </View>
 
-                                <View style={Styles.common.container}>
+                                <View>
                                     <View style={Styles.showingMovie.movieSubHeaderContainer}>
                                         <Text style={Styles.showingMovie.movieSubHeader}>{rowData.playDate.showname}</Text>
                                     </View>

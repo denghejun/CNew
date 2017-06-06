@@ -10,7 +10,7 @@ export default StyleSheet.create({
         borderWidth: 1
     },
     movieItemImage: {
-        height: 255,
+        height: 258,
         resizeMode: 'stretch',
         borderRadius: 4,
         borderWidth: 0.2,

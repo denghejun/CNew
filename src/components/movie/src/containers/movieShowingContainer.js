@@ -40,7 +40,6 @@ export default class MovieShowingContainer {
                         dispatch(actionCreators.movie.showing.movieItem.flip({ index }));
                     }, 200)
                 })
-
         }
     }
 

@@ -4,6 +4,7 @@ import FlipCard from 'react-native-flip-card'
 import Spinner from 'react-native-spinkit'
 import * as Styles from '../styles/_index'
 import MovieErrorView from './errorView'
+import Button from 'react-native-button'
 import {
     View,
     Text,
@@ -71,7 +72,7 @@ export default class MovieComingView extends React.Component {
                             <View>
                                 <Image source={{ uri: movieItemImageUrl }} style={Styles.showingMovie.movieItemImage} />
                             </View>
-                            <View style={Styles.common.container}>
+                            <View style={Styles.common.spaceBetweenContainer}>
                                 <View>
                                     <View style={Styles.showingMovie.movieSubHeaderContainer}>
                                         <Text style={Styles.showingMovie.movieSubHeader}>{rowData.tvTitle}</Text>
@@ -79,12 +80,24 @@ export default class MovieComingView extends React.Component {
                                     <Text style={Styles.showingMovie.movieSubText}>{rowData.story.data.storyBrief}</Text>
                                 </View>
 
-                                <View style={Styles.common.container}>
+                                <View>
                                     <View style={Styles.showingMovie.movieSubHeaderContainer}>
                                         <Text style={Styles.showingMovie.movieSubHeader}>{rowData.playDate.showname}</Text>
                                     </View>
                                     <Text style={Styles.showingMovie.movieSubText}>{rowData.playDate.data}</Text>
                                     <Text style={Styles.showingMovie.movieSubText}>{rowData.subHead}</Text>
+                                </View>
+
+                                <View>
+                                    <View style={Styles.showingMovie.movieSubHeaderContainer}>
+                                        <Text style={Styles.showingMovie.movieSubHeader}>{rowData.more.data[1].name}</Text>
+                                    </View>
+                                    <Button
+                                        style={Styles.showingMovie.buyButton}
+                                        containerStyle={Styles.showingMovie.buyButtonContainer}
+                                        onPress={() => this.props.onPreviewButtonPress(rowData.more.data[1].link)}>
+                                        {rowData.more.data[1].name}
+                                    </Button>
                                 </View>
                             </View>
 
