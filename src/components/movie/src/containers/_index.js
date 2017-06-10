@@ -9,4 +9,3 @@ Utility.ContainerResolver.resolve(MovieShowingContainer, Views.movieShowingView)
 Utility.ContainerResolver.resolve(MovieSearchContainer, Views.movieSearchView)
 
 export { MovieComingContainer, MovieShowingContainer, MovieSearchContainer }
-

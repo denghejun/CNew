@@ -1,42 +1,35 @@
 import RNFetchBlob from 'react-native-fetch-blob'
 
 export default class ApiService {
-    constructor(apiURI, apiKey) {
-        this.apiURI = apiURI;
-        this.apiKey = apiKey;
+  constructor(apiURI, apiKey) {
+    this.apiURI = apiURI
+    this.apiKey = apiKey
+  }
+
+  before(request) {
+    return request
+  }
+
+  get(request) {
+    if (this.before) {
+      request = this.before(request)
     }
 
-    before(request) {
-      return request;
+    let uri = this.apiURI + '?'
+    if (typeof request === typeof '') {
+      uri += '&' + request
+    } else if (typeof request === typeof {}) {
+      Object.keys(request).forEach(key => {
+        uri += '&' + key + '=' + request[key]
+      })
     }
 
-    get(request) {
-        if (this.before) {
-          request = this.before(request);
-        }
+    return RNFetchBlob.fetch('GET', encodeURI(uri)).then(response => response.json())
+  }
 
-        let uri = this.apiURI + '?';
-        if (typeof (request) === typeof ('')) {
-            uri += '&' + request;
-        }
-        else if (typeof (request) === typeof ({})) {
-            Object.keys(request).forEach(key => {
-                uri += '&' + key + '=' + request[key]
-            })
-        }
+  post(request) {}
 
-        return RNFetchBlob.fetch('GET', encodeURI(uri)).then(response => response.json());
-    }
+  put(request) {}
 
-    post(request) {
-
-    }
-
-    put(request) {
-
-    }
-
-    delete(request) {
-
-    }
+  delete(request) {}
 }

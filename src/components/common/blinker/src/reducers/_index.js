@@ -15,8 +15,8 @@ import { combineReducers } from 'redux'
 import animationReducers from './animationReducers'
 import blinkerReducers from './blinkerReducers'
 const reducers = combineReducers({
-    animation: animationReducers,
-    blinker: blinkerReducers
-});
+  animation: animationReducers,
+  blinker: blinkerReducers
+})
 
-export default reducers;
+export default reducers

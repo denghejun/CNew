@@ -4,11 +4,11 @@ import comingAction from './comingAction'
 import searchAction from './searchAction'
 
 const actionCreators = createActions({
-    MOVIE: {
-      SHOWING: showingAction,
-      COMING: comingAction,
-      SEARCH: searchAction
-    }
+  MOVIE: {
+    SHOWING: showingAction,
+    COMING: comingAction,
+    SEARCH: searchAction
+  }
 })
 
 export default actionCreators

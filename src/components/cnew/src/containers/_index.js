@@ -1,1 +1,1 @@
-export { default as CNewContainer } from './cnewContainer' 
+export { default as CNewContainer } from './cnewContainer'

@@ -8,10 +8,14 @@ export default class BaiduMapApiService extends ApiService {
   }
 
   before(request) {
-    return merge.recursive(true, {
-      ak: this.apiKey,
-      output: 'json',
-      pois: 0
-    }, request);
+    return merge.recursive(
+      true,
+      {
+        ak: this.apiKey,
+        output: 'json',
+        pois: 0
+      },
+      request
+    )
   }
 }

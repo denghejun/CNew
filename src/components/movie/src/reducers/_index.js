@@ -24,11 +24,11 @@ import comingReducer from './comingReducer'
 import searchReducer from './searchReducer'
 
 const reducers = combineReducers({
-    movie: combineReducers({
-      showing: showingReducer,
-      coming: comingReducer,
-      search: searchReducer
-    })
+  movie: combineReducers({
+    showing: showingReducer,
+    coming: comingReducer,
+    search: searchReducer
+  })
 })
 
 export default reducers

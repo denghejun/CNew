@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import { Button, Text } from 'react-native'
 import { Provider } from 'react-redux'
 import Config from 'react-native-config'
@@ -7,9 +7,9 @@ import createStore from './src/store/_index'
 
 export default class CNew extends Component {
   constructor(props) {
-    super(props);
-    this.store = createStore();
-    this.cnewContainer = Containers.CNewContainer.connect();
+    super(props)
+    this.store = createStore()
+    this.cnewContainer = Containers.CNewContainer.connect()
   }
 
   render() {
@@ -21,9 +21,8 @@ export default class CNew extends Component {
           logoImageURL={require('./src/assets/image/logo.png')}
           cnewImageURL={require('./src/assets/image/cnew.png')}
           videoURL={require('./src/assets/video/v1.mp4')}
-        >
-        </this.cnewContainer>
+        />
       </Provider>
-    );
+    )
   }
 }
