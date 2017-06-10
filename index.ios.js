@@ -1,3 +1,3 @@
 import Bootstrapper from './src/core/bootstrapper'
 
-Bootstrapper.start();
+Bootstrapper.start()
