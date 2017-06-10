@@ -95,12 +95,21 @@ export default class MovieShowingView extends React.Component {
                                     <View style={Styles.showingMovie.movieSubHeaderContainer}>
                                         <Text style={Styles.showingMovie.movieSubHeader}>{rowData.more.data[0].name}</Text>
                                     </View>
-                                    <Button
-                                        style={Styles.showingMovie.buyButton}
-                                        containerStyle={Styles.showingMovie.buyButtonContainer}
-                                        onPress={() => this.props.onBuyButtonPress(rowData.more.data[0].link)}>
-                                        {rowData.more.data[0].name}
-                                    </Button>
+                                    <View style={Styles.showingMovie.buttonView}>
+                                      <Button
+                                          style={Styles.showingMovie.buyButton}
+                                          containerStyle={[Styles.showingMovie.buyButtonContainerFlex]}
+                                          onPress={() => this.props.onBuyButtonPress(rowData.more.data[0].link)}>
+                                          {rowData.more.data[0].name}
+                                      </Button>
+                                      <Button
+                                          style={Styles.showingMovie.buyButton}
+                                          containerStyle={[Styles.showingMovie.buyButtonContainerFlex, Styles.common.marginLeft_5]}
+                                          onPress={() => this.props.onBuyButtonPress(rowData.more.data[2].link)}>
+                                          {rowData.more.data[2].name}
+                                      </Button>
+                                    </View>
+
                                 </View>
 
                             </View>

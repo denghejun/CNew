@@ -36,16 +36,30 @@ export default StyleSheet.create({
     buyButton: {
         fontWeight: 'bold',
         color: 'white',
-        fontSize: 16,
+        fontSize: 14
     },
     buyButtonContainer: {
-        padding: 10,
+        padding: 5,
         height: 35,
         overflow: 'hidden',
         borderRadius: 4,
         backgroundColor: 'orange',
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    buyButtonContainerFlex: {
+        flex: 1,
+        padding: 5,
+        height: 35,
+        overflow: 'hidden',
+        borderRadius: 4,
+        backgroundColor: 'orange',
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    buttonView: {
+      flexDirection:'row',
+      justifyContent: 'space-between'
     },
     movieSubHeaderContainer: {
         paddingTop: 10,

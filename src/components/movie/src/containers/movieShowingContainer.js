@@ -58,7 +58,8 @@ export default class MovieShowingContainer {
             onComponentDidMount: () => dispatch(this.getRecommendMovies()),
             onRefresh: () => dispatch(this.getRecommendMovies()),
             onMovieItemFlipped: (index) => dispatch(this.changeMovieItemFlip(index)),
-            onBuyButtonPress: (url) => Utilities.Browser.open(url)
+            onBuyButtonPress: (url) => Utilities.Browser.open(url),
+            onPreviewButtonPress: (url) => Utilities.Browser.open(url)
         }
     }
 }

@@ -17,9 +17,15 @@ export default StyleSheet.create({
         flex: 1,
         padding: 6,
     },
-    spaceBetweenContainer:
-    {
+    spaceBetweenContainer: {
       flex:1,
       justifyContent: 'space-between'
+    },
+    containerRowDirection: {
+      flex: 1,
+      flexDirection:'row'
+    },
+    marginLeft_5: {
+      marginLeft: 5
     }
 })
