@@ -20,7 +20,7 @@ export default class CNew extends Component {
           cnewTitle={Config.TEXT_CNEW_TITLE}
           logoImageURL={require('./src/assets/image/logo.png')}
           cnewImageURL={require('./src/assets/image/cnew.png')}
-          videoURL={require('./src/assets/video/v1.mp4')}
+          // videoURL={require('./src/assets/video/v1.mp4')}
         />
       </Provider>
     )

@@ -11,7 +11,7 @@ export default class MovieSearchView extends React.Component {
     return (
       <View style={Styles.common.body}>
         <Jiro
-          label={'今天我想看？'}
+          label={'今天我想看什么电影呢？'}
           labelStyle={Styles.searchMovie.labelStyle}
           borderColor={'orange'}
           autoCapitalize="none"
