@@ -1,6 +1,6 @@
 import { AppRegistry } from 'react-native'
 import Cache from 'react-native-cache-store'
-import FilmNight from '../components/router/_index'
+import Root from '../components/router/_index'
 import Services from '../services/_index'
 import codePush from 'react-native-code-push'
 
@@ -10,21 +10,7 @@ export default class BootStrapper {
   }
 
   static launch() {
-    const codepushOption = {
-      updateDialog: {
-        appendReleaseDescription: true,
-        descriptionPrefix: 'Release Note: ',
-        mandatoryContinueButtonLabel: '好',
-        title: '更新',
-        optionalUpdateMessage: '发现可用更新，是否立即更新？\r\n',
-        mandatoryUpdateMessage: '发现可用更新，建议立即更新。\r\n',
-        optionalIgnoreButtonLabel: '不了，谢谢',
-        optionalInstallButtonLabel: '安装更新'
-      },
-      installMode: codePush.InstallMode.IMMEDIATE
-    }
-
-    const app = codePush(codepushOption)(FilmNight)
+    const app = codePush(BootStrapper.getCodePushOption())(Root)
     AppRegistry.registerComponent('CNewApp', () => app)
   }
 
@@ -39,5 +25,21 @@ export default class BootStrapper {
       .catch(error => {
         console.log(error)
       })
+  }
+
+  static getCodePushOption() {
+    return {
+      updateDialog: {
+        appendReleaseDescription: true,
+        descriptionPrefix: 'Release Note: ',
+        mandatoryContinueButtonLabel: '好',
+        title: '更新',
+        optionalUpdateMessage: '发现可用更新，是否立即更新？\r\n',
+        mandatoryUpdateMessage: '发现可用更新，建议立即更新。\r\n',
+        optionalIgnoreButtonLabel: '不了，谢谢',
+        optionalInstallButtonLabel: '安装更新'
+      },
+      installMode: codePush.InstallMode.IMMEDIATE
+    }
   }
 }

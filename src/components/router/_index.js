@@ -4,7 +4,7 @@ import codePush from 'react-native-code-push'
 import createStore from './src/store/_index'
 import * as Containers from './src/containers/_index'
 
-export default class CNewApp extends React.Component {
+export default class Root extends React.Component {
   constructor(props) {
     super(props)
     this.store = createStore()
