@@ -1,6 +1,6 @@
 import { AppRegistry } from 'react-native'
 import Cache from 'react-native-cache-store'
-import CNewApp from '../components/router/_index'
+import FilmNight from '../components/router/_index'
 import Services from '../services/_index'
 import codePush from 'react-native-code-push'
 
@@ -24,7 +24,7 @@ export default class BootStrapper {
       installMode: codePush.InstallMode.IMMEDIATE
     }
 
-    const app = codePush(codepushOption)(CNewApp)
+    const app = codePush(codepushOption)(FilmNight)
     AppRegistry.registerComponent('CNewApp', () => app)
   }
 

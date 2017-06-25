@@ -25,7 +25,7 @@ export default class CNewApp extends React.Component {
     return (
       <Router>
         <Scene key="root">
-          <Scene key="cnew" type={ActionConst.REPLACE} component={Components.cnew} initial={true} hideNavBar={true} />
+          <Scene key="cnew" type={ActionConst.REPLACE} component={Components.home} initial={true} hideNavBar={true} />
           <Scene
             key="movie"
             type={ActionConst.REPLACE}

@@ -14,9 +14,9 @@ import {
   DatePickerIOS
 } from 'react-native'
 
-export default class CNewView extends React.Component {
+export default class HomeView extends React.Component {
   render() {
-    const { title, cnewTitle, logoImageURL, cnewImageURL, videoURL, onLogoPress } = this.props
+    const { logotitle, copyrightTitle, logoImageURL, copyrightImageURL, videoURL, onLogoPress } = this.props
     return (
       <View style={Styles.home.container}>
         {/*<Video
@@ -56,7 +56,7 @@ export default class CNewView extends React.Component {
               scaleFrom={3}
               style={Styles.home.titleText}
             >
-              {title}
+              {logotitle}
             </Blinker>
           </TouchableOpacity>
         </View>
@@ -70,7 +70,7 @@ export default class CNewView extends React.Component {
             rotationFriction={150}
             style={Styles.home.cnewImage}
           >
-            <Image style={Styles.home.cnewLogo} source={cnewImageURL} />
+            <Image style={Styles.home.cnewLogo} source={copyrightImageURL} />
           </Blinker>
           <Blinker
             blinkable={true}
@@ -79,7 +79,7 @@ export default class CNewView extends React.Component {
             blinkTime={8300}
             style={Styles.home.cnewWords}
           >
-            {cnewTitle}
+            {copyrightTitle}
           </Blinker>
         </View>
       </View>
