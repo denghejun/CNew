@@ -11,7 +11,7 @@ export default class BootStrapper {
 
   static launch() {
     const app = codePush(BootStrapper.getCodePushOption())(Root)
-    AppRegistry.registerComponent('CNewApp', () => app)
+    AppRegistry.registerComponent('FilmNight', () => app)
   }
 
   static start() {
