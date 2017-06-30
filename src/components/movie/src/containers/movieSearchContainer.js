@@ -2,7 +2,7 @@ import { Alert } from 'react-native'
 import Services from '../../../../services/_index'
 import actionCreators from '../actions/_index'
 import { width, height, totalSize } from 'react-native-dimension'
-import Utility, * as Utilities from '../../../utility/_index'
+import Utility, * as Utilities from '@film-night/utility'
 import Config from 'react-native-config'
 
 export default class MovieSearchContainer {

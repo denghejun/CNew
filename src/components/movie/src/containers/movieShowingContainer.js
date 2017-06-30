@@ -1,7 +1,7 @@
 import { ListView, Alert } from 'react-native'
 import actionCreators from '../actions/_index'
 import Services from '../../../../services/_index'
-import Utility, * as Utilities from '../../../utility/_index'
+import Utility, * as Utilities from '@film-night/utility'
 import Config from 'react-native-config'
 
 export default class MovieShowingContainer {
