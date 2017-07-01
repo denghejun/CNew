@@ -1,3 +1,3 @@
-import Bootstrapper from './src/core/bootstrapper'
+import * as Core from '@film-night/core'
 
-Bootstrapper.start()
+Core.Bootstrapper.start()
