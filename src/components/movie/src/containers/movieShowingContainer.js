@@ -1,6 +1,6 @@
 import { ListView, Alert } from 'react-native'
 import actionCreators from '../actions/_index'
-import Services from '../../../../services/_index'
+import Services from '@film-night/services'
 import Utility, * as Utilities from '@film-night/utility'
 import Config from 'react-native-config'
 

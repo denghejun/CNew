@@ -1,6 +1,6 @@
 import { ListView } from 'react-native'
 import actionCreators from '../actions/_index'
-import Services from '../../../../services/_index'
+import Services from '@film-night/services'
 import Utility, * as Utilities from '@film-night/utility'
 import Cache from 'react-native-cache-store'
 import Config from 'react-native-config'
@@ -19,7 +19,7 @@ export default class MovieComingContainer {
       dispatch(actionCreators.movie.coming.fetch.start())
       Services.LocationService.Default.getCurrentCity(
         city => {
-          return Services.MovieService.MovieRecommendService.Cache
+          return Services.MovieService.MovieRecommendService.Cache.Mock
             .getRecommendMovies({ city })
             .then(response => {
               dispatch(actionCreators.movie.coming.fetch.success(response))

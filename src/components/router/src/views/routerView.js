@@ -1,5 +1,5 @@
 import React from 'react'
-import * as Components from '../../../_index'
+import * as Components from '@film-night/components'
 import * as Styles from '../styles/_index'
 import { Router, Scene, Actions, ActionConst } from 'react-native-router-flux'
 

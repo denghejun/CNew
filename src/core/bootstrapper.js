@@ -1,7 +1,7 @@
 import { AppRegistry } from 'react-native'
 import Cache from 'react-native-cache-store'
-import Root from '../components/router/_index'
-import Services from '../services/_index'
+import * as Components from '@film-night/components'
+import Services from '@film-night/services'
 import codePush from 'react-native-code-push'
 
 export default class BootStrapper {
@@ -10,7 +10,7 @@ export default class BootStrapper {
   }
 
   static launch() {
-    const app = codePush(BootStrapper.getCodePushOption())(Root)
+    const app = codePush(BootStrapper.getCodePushOption())(Components.root)
     AppRegistry.registerComponent('FilmNight', () => app)
   }
 

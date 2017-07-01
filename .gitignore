@@ -34,6 +34,7 @@ local.properties
 #
 node_modules/*
 !node_modules/@film-night/
+!node_modules/@app/
 
 npm-debug.log
 yarn-error.log

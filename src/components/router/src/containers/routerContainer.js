@@ -1,5 +1,5 @@
 import actionCreators from '../actions/_index'
-import Services from '../../../../services/_index'
+import Services from '@film-night/services'
 
 export default class RouterContainer {
   getCurrentLocation() {
