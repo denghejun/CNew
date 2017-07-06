@@ -3,7 +3,7 @@ import Config from 'react-native-config'
 import merge from 'merge/merge'
 import Cache from 'react-native-cache-store'
 import mockSearchMovieData from '../mock/searchMovieData'
-import Utility from '../../../../src/components/utility/_index'
+import Utility from '@film-night/utility'
 
 export default class MovieSearchService extends JuheApiService {
   constructor() {
