@@ -1,10 +1,10 @@
-const PAYLOAD_AND_META_CREATOR = [payload => payload, (payload, meta) => meta]
+import { Common } from '@film-night/utility'
 const animationActions = {
   ROTATION: {
-    CHANGE: PAYLOAD_AND_META_CREATOR
+    CHANGE: Common.PAYLOAD_AND_META_CREATOR
   },
   SCALE: {
-    CHANGE: PAYLOAD_AND_META_CREATOR
+    CHANGE: Common.PAYLOAD_AND_META_CREATOR
   }
 }
 

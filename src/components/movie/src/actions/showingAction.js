@@ -1,12 +1,12 @@
-const PAYLOAD_AND_META_CREATOR = [payload => payload, (payload, meta) => meta]
+import { Common } from '@film-night/utility'
 const showingAction = {
   FETCH: {
-    START: PAYLOAD_AND_META_CREATOR,
-    SUCCESS: PAYLOAD_AND_META_CREATOR,
-    FAILED: PAYLOAD_AND_META_CREATOR
+    START: Common.PAYLOAD_AND_META_CREATOR,
+    SUCCESS: Common.PAYLOAD_AND_META_CREATOR,
+    FAILED: Common.PAYLOAD_AND_META_CREATOR
   },
   MOVIE_ITEM: {
-    FLIP: PAYLOAD_AND_META_CREATOR
+    FLIP: Common.PAYLOAD_AND_META_CREATOR
   }
 }
 

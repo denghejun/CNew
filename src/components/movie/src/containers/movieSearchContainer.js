@@ -1,6 +1,6 @@
 import { Alert } from 'react-native'
 import Services from '@film-night/services'
-import Utility, * as Utilities from '@film-night/utility'
+import { Common } from '@film-night/utility'
 import actionCreators from '../actions/_index'
 import { width, height, totalSize } from 'react-native-dimension'
 import Config from 'react-native-config'
@@ -9,7 +9,7 @@ export default class MovieSearchContainer {
   search(name) {
     return (dispatch, getState) => {
       dispatch(actionCreators.movie.search.fetch.start({ q: name }))
-      return Services.MovieService.MovieSearchService.Cache
+      return Services.MovieService.MovieSearchService.Cache.Mock
         .search({ q: name })
         .then(response => {
           dispatch(actionCreators.movie.search.fetch.success(response))
@@ -21,13 +21,13 @@ export default class MovieSearchContainer {
   }
 
   openMoviePlayLink(links) {
-    if (!Utility.isEmpty(links)) {
+    if (!Common.isEmpty(links)) {
       const keys = Object.keys(links)
       const { youku, tudou, qq, kumi, imgo } = links
       const priorityLinks = [youku, tudou, qq, kumi, imgo]
-      const firstPlaylink = priorityLinks.find(l => !Utility.isEmpty(l)) || keys.find(k => !Utility.isEmpty(links[k]))
-      if (!Utility.isEmpty(firstPlaylink)) {
-        Utilities.Browser.open(firstPlaylink)
+      const firstPlaylink = priorityLinks.find(l => !Common.isEmpty(l)) || keys.find(k => !Common.isEmpty(links[k]))
+      if (!Common.isEmpty(firstPlaylink)) {
+        Common.openUrl(firstPlaylink)
       } else {
         Alert.alert(Config.TEXT_NO_MOVIE_SOURCE_FOUND)
       }

@@ -3,7 +3,7 @@ import Config from 'react-native-config'
 import merge from 'merge/merge'
 import Cache from 'react-native-cache-store'
 import mockSearchMovieData from '../mock/searchMovieData'
-import Utility from '@film-night/utility'
+import { Common } from '@film-night/utility'
 
 export default class MovieSearchService extends JuheApiService {
   constructor() {
@@ -32,7 +32,7 @@ export default class MovieSearchService extends JuheApiService {
         const noMovieFoundMessage = { message: 'no movie found.' }
         return Promise.resolve(mockSearchMovieData[Number.parseInt(params.q)])
           .then(movie => {
-            return Utility.isEmpty(movie) ? Promise.reject(noMovieFoundMessage) : movie
+            return Common.isEmpty(movie) ? Promise.reject(noMovieFoundMessage) : movie
           })
           .catch(e => {
             return Promise.reject(noMovieFoundMessage)

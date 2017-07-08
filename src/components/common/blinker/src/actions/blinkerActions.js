@@ -1,7 +1,7 @@
-const PAYLOAD_AND_META_CREATOR = [payload => payload, (payload, meta) => meta]
+import { Common } from '@film-night/utility'
 const blinkerActions = {
   BLINK: {
-    CHANGE: PAYLOAD_AND_META_CREATOR
+    CHANGE: Common.PAYLOAD_AND_META_CREATOR
   }
 }
 
