@@ -59,7 +59,7 @@ export default class MovieComingView extends React.Component {
                   <View style={Styles.showingMovie.movieSubHeaderContainer}>
                     <Text style={Styles.showingMovie.movieSubHeader}>{rowData.star.showname}</Text>
                   </View>
-                  {Object.keys(rowData.star.data).filter(o => rowData.star.data[o].name !== undefined).map(k => {
+                  {Object.keys(rowData.star.data || {}).filter(o => rowData.star.data[o].name !== undefined).map(k => {
                     return <Text key={k} style={Styles.showingMovie.movieSubText}>{rowData.star.data[k].name}</Text>
                   })}
                 </View>
