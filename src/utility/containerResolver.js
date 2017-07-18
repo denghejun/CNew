@@ -8,7 +8,7 @@ export default class ContainerResolver {
     }
 
     if (typeof container.mapStateToProps !== 'function') {
-      throw new Error('A standard container must have a function named mapStateToProps .')
+      throw new Error('A standard container must have a function named mapStateToProps xxxx.')
     }
 
     ContainerClass.connect = () => connect(container.mapStateToProps, container.mapDispatchToProps)(ViewClass)
