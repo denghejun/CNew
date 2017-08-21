@@ -11,7 +11,7 @@
     "merge": "^1.2.0",
     "prop-types": "^15.5.8",
     "react": "16.0.0-alpha.6",
-    "react-native": "0.43.1",
+    "react-native": "^0.44.0",
     "react-native-animatable": "^1.2.0",
     "react-native-browser": "^0.6.2",
     "react-native-button": "^1.8.2",
